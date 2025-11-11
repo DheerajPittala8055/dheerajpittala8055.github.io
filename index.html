@@ -63,7 +63,7 @@ section{max-width:1100px;margin:42px auto;padding:0 22px}
 /* Contact */
 .contact-row{display:flex;gap:18px;justify-content:center;align-items:center;margin-bottom:16px}
 .contact-icon{width:56px;height:56px;display:inline-flex;align-items:center;justify-content:center;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));font-size:28px;color:var(--accent);box-shadow:0 6px 18px rgba(0,0,0,0.2)}
-#contact h4{text-align:center;margin:16px 0 8px;font-size:20px;color:var(--accent)}
+#contact h4{margin:20px 0 16px;text-align:center;font-size:22px;color:var(--accent)}
 form{max-width:720px;margin:0 auto 40px;display:grid;gap:12px}
 form .row{display:flex;gap:12px}
 form .row input{flex:1;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:var(--card);color:var(--text)}
@@ -154,15 +154,124 @@ footer{padding:30px 22px;text-align:center;color:var(--muted);font-size:13px}
   </div>
 </div>
 </section>
+<section id="experience">
+<h3 class="section-title">Professional Experience</h3>
+<div class="timeline-wrap">
+  <div class="timeline-line"></div>
 
-<!-- Timeline, Projects, Contact, Footer sections will be exactly same as your previous approved version. -->
+  <!-- Node 1 -->
+  <div class="timeline-node left">
+    <div class="timeline-meta">May 2025 – Present</div>
+    <div class="timeline-role">Business Data Analyst | Ecolab, USA</div>
+    <p>Led automation of financial reporting dashboards in Power BI/Tableau, reducing manual reporting time by 35%. Streamlined ETL workflows integrating multi-source data, enabling faster decision-making. Delivered KPI-driven executive insights aligned with strategic planning.</p>
+  </div>
+
+  <!-- Node 2 -->
+  <div class="timeline-node right">
+    <div class="timeline-meta">Jul 2024 – Jun 2025</div>
+    <div class="timeline-role">Data Analyst | UNT Transportation Services, USA</div>
+    <p>Analyzed complex datasets and developed Power BI dashboards reducing reporting time by 50%. Automated ETL pipelines and implemented ML-based sentiment analysis for customer feedback, enhancing operational efficiency and resource allocation.</p>
+  </div>
+
+  <!-- Node 3 -->
+  <div class="timeline-node left">
+    <div class="timeline-meta">Aug 2022 – May 2024</div>
+    <div class="timeline-role">Junior Data Analyst | UNT Transportation Services, USA</div>
+    <p>Designed A/B testing frameworks, optimized SQL queries reducing retrieval time by 30%. Built dynamic database architectures for KPI dashboards and supported ad-hoc analyses improving service efficiency.</p>
+  </div>
+
+  <!-- Node 4 -->
+  <div class="timeline-node right">
+    <div class="timeline-meta">Jan 2018 – Mar 2022</div>
+    <div class="timeline-role">DevOps Engineer | Accretion Info Systems, India</div>
+    <p>Automated CI/CD pipelines with Jenkins and containerized deployments via Kubernetes. Configured Azure storage solutions for efficient data management, built reporting pipelines, and coordinated releases via JIRA.</p>
+  </div>
+
+  <!-- Node 5 -->
+  <div class="timeline-node left">
+    <div class="timeline-meta">Aug 2017 – Dec 2017</div>
+    <div class="timeline-role">Associate Software Engineer | Accretion Info Systems, India</div>
+    <p>Developed and optimized Java backend systems improving query efficiency by 20%. Implemented Agile practices enhancing delivery timelines and reporting dashboards via Excel and SAS.</p>
+  </div>
+</div>
+</section>
+
+<section id="projects">
+<h3 class="section-title">Projects</h3>
+<div class="projects-grid">
+  <div class="project-card">
+    <h4>BCG Chatbot (GenAI)</h4>
+    <p>Built NLP chatbot enabling user-friendly insights interpreting 10-K, 10-Q reports.</p>
+    <div class="project-actions"><a href="https://github.com/DheerajPittala8055" target="_blank">View on GitHub</a></div>
+  </div>
+  <div class="project-card">
+    <h4>Video Game Sales Analysis (SQL, Tableau)</h4>
+    <p>Analyzed sales trends; published dashboards to inform strategy.</p>
+    <div class="project-actions"><a href="https://github.com/DheerajPittala8055" target="_blank">View on GitHub</a></div>
+  </div>
+  <div class="project-card">
+    <h4>Student Mental Health (GCP)</h4>
+    <p>Processed real-time survey and health care data; visualized support gaps.</p>
+    <div class="project-actions"><a href="https://github.com/DheerajPittala8055" target="_blank">View on GitHub</a></div>
+  </div>
+  <div class="project-card">
+    <h4>Credit Card Fraud Prediction</h4>
+    <p>Built Logistic Regression & Random Forest models and compared F1 scores.</p>
+    <div class="project-actions"><a href="https://github.com/DheerajPittala8055" target="_blank">View on GitHub</a></div>
+  </div>
+  <div class="project-card">
+    <h4>Crypto Price Forecasting</h4>
+    <p>Modeled historical data with FB Prophet & SVM to deliver accurate short-term forecasts.</p>
+    <div class="project-actions"><a href="https://github.com/DheerajPittala8055" target="_blank">View on GitHub</a></div>
+  </div>
+</div>
+</section>
+
+<section id="contact">
+<h3 class="section-title">Contact</h3>
+<div class="contact-row">
+  <a href="https://www.linkedin.com/in/dheeraj-pittala/" target="_blank"><div class="contact-icon"><i class="fab fa-linkedin"></i></div></a>
+  <a href="mailto:dheerajkmp8055@gmail.com"><div class="contact-icon"><i class="fas fa-envelope"></i></div></a>
+  <a href="https://github.com/DheerajPittala8055" target="_blank"><div class="contact-icon"><i class="fab fa-github"></i></div></a>
+</div>
+
+<h4>Submit a form</h4>
+<form id="contactForm" action="mailto:dheerajkmp8055@gmail.com" method="POST" enctype="text/plain">
+  <div class="row">
+    <input type="text" name="firstName" placeholder="First Name" required>
+    <input type="text" name="lastName" placeholder="Last Name" required>
+  </div>
+  <div class="row">
+    <input type="text" name="mobile" placeholder="Mobile Number" required>
+    <input type="email" name="email" placeholder="Email ID" required>
+  </div>
+  <input type="text" name="subject" placeholder="Subject" required>
+  <textarea name="message" placeholder="Description" required></textarea>
+  <button type="submit" class="submit-btn">Send</button>
+</form>
+</section>
+
+<footer>
+  &copy; 2025 Dheeraj Pittala. All Rights Reserved.
+</footer>
+
+<button id="topBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
 
 <script>
-const themeToggle=document.getElementById('themeToggle');
-themeToggle.addEventListener('click',()=>{document.body.dataset-theme=document.body.dataset-theme==='dark'?'light':'dark'});
-const topBtn=document.getElementById('topBtn');
-window.onscroll=()=>{topBtn.style.display=(document.body.scrollTop>100||document.documentElement.scrollTop>100)?'block':'none'};
-document.getElementById('contactForm').addEventListener('submit',function(e){e.preventDefault();alert('Form submitted! (Integrate email API to send messages)');});
+const themeToggle = document.getElementById('themeToggle');
+themeToggle.addEventListener('click', () => {
+  document.body.dataset-theme = document.body.dataset-theme === 'dark' ? 'light' : 'dark';
+});
+
+window.onscroll = function() {scrollFunction()};
+function scrollFunction(){
+  const topBtn = document.getElementById("topBtn");
+  if(document.body.scrollTop > 300 || document.documentElement.scrollTop > 300){
+    topBtn.style.display = "block";
+  } else { topBtn.style.display = "none"; }
+}
+function scrollToTop(){document.documentElement.scrollTop = 0;}
 </script>
+
 </body>
 </html>
