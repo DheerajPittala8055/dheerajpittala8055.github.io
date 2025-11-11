@@ -46,6 +46,11 @@
     }
     header .brand { display: flex; align-items: center; gap: 12px; }
     header .brand h1 { margin: 0; font-size: 18px; font-weight: 700; }
+    header .right-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
     header nav { display: flex; gap: 12px; }
     header nav a {
       color: var(--text);
@@ -57,39 +62,146 @@
       transition: all var(--transition);
     }
     header nav a:hover { background: var(--glass); transform: translateY(-2px); }
-    .controls .theme-btn {
+    .theme-btn {
       border: none;
-      background: linear-gradient(90deg,var(--accent),var(--accent-2));
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
       color: #04121a;
-      padding: 8px 10px;
-      border-radius: 10px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
       cursor: pointer;
-      font-weight: 700;
-      transition: transform var(--transition);
+      font-size: 20px;
+      transition: all var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(244, 180, 26, 0.3);
     }
-    .controls .theme-btn:active { transform: scale(.98); }
+    .theme-btn:hover { 
+      transform: rotate(180deg) scale(1.1); 
+      box-shadow: 0 6px 20px rgba(244, 180, 26, 0.5);
+    }
+    .theme-btn:active { transform: rotate(180deg) scale(.95); }
+    
+    /* Hero Section with Visual */
     .hero {
       padding: 92px 6% 56px;
-      display: flex; flex-direction: column; align-items: center; text-align: center;
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      text-align: center;
       background: linear-gradient(180deg,rgba(244,180,26,0.08),rgba(238,123,59,0.02));
+      position: relative;
+      overflow: hidden;
     }
-    .hero h2 { font-size: 40px; margin: 0; color: var(--accent); }
-    .hero p { margin: 0; font-weight: 600; }
+    .hero-visual {
+      position: relative;
+      margin-bottom: 30px;
+      width: 100%;
+      max-width: 800px;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .skill-orbit {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      animation: rotate 20s linear infinite;
+    }
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .skill-icon {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background: var(--card);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    .skill-icon:hover {
+      transform: scale(1.2) translateY(-5px);
+      box-shadow: 0 12px 32px rgba(244, 180, 26, 0.4);
+    }
+    .skill-icon:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+    .skill-icon:nth-child(2) { top: 10%; left: 50%; transform: translateX(-50%); animation-delay: 0.5s; }
+    .skill-icon:nth-child(3) { top: 20%; right: 10%; animation-delay: 1s; }
+    .skill-icon:nth-child(4) { bottom: 20%; left: 10%; animation-delay: 1.5s; }
+    .skill-icon:nth-child(5) { bottom: 20%; right: 10%; animation-delay: 2s; }
+    
+    .hero-center {
+      position: relative;
+      z-index: 10;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero h2 { 
+      font-size: 48px; 
+      margin: 0; 
+      font-weight: 700;
+      text-shadow: 0 2px 10px rgba(244, 180, 26, 0.3);
+    }
+    .hero p { margin: 8px 0 0 0; font-weight: 600; color: var(--text); }
     .hero .cta {
       margin-top: 18px; padding: 12px 22px;
       border-radius: 999px; border: none;
-      background: var(--accent);
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
       color: #041219; font-weight: 700; cursor: pointer;
-      transition: transform var(--transition);
+      transition: all var(--transition);
+      box-shadow: 0 4px 15px rgba(244, 180, 26, 0.3);
     }
-    .hero .cta:hover { transform: translateY(-3px); }
+    .hero .cta:hover { 
+      transform: translateY(-3px); 
+      box-shadow: 0 8px 25px rgba(244, 180, 26, 0.5);
+    }
+    
     section { max-width: 1100px; margin: 42px auto; padding: 0 22px; }
-    .section-title { text-align: center; margin-bottom: 22px; font-size: 22px; color: var(--accent); }
-    .about-card {
-      background: var(--card); border-radius: var(--radius);
-      padding: 26px; box-shadow: 0 8px 30px rgba(2,6,23,0.45);
+    .section-title { 
+      text-align: center; 
+      margin-bottom: 22px; 
+      font-size: 28px; 
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
     }
-    .about-card p { font-size: 16px; line-height: 1.7; margin: 0; }
+    
+    /* Enhanced About Section */
+    .about-card {
+      background: var(--card); 
+      border-radius: var(--radius);
+      padding: 32px; 
+      box-shadow: 0 8px 30px rgba(2,6,23,0.45);
+      border-left: 4px solid var(--accent);
+    }
+    .about-card h4 {
+      color: var(--accent);
+      margin: 0 0 12px 0;
+      font-size: 18px;
+    }
+    .about-card p { 
+      font-size: 16px; 
+      line-height: 1.8; 
+      margin: 0 0 20px 0;
+      color: var(--muted);
+    }
+    .about-card p:last-child { margin-bottom: 0; }
 
     /* Skills */
     .skills-grid {
@@ -102,6 +214,7 @@
       box-shadow: 0 8px 20px rgba(2,6,23,0.35);
       text-align: center;
       transition: transform 0.3s ease;
+      border-top: 3px solid var(--accent);
     }
     .skill-group:hover { transform: translateY(-6px); }
     .skill-head img {
@@ -116,39 +229,141 @@
       align-items: center;
     }
 
-    /* Timeline */
-    .timeline-wrap { position: relative; padding: 30px 0 10px; }
-    .timeline-line {
-      position: absolute; left: 50%; width: 4px; top: 0; bottom: 0;
-      background: linear-gradient(180deg,var(--accent),var(--accent-2));
-      transform: translateX(-50%); border-radius: 2px;
+    /* Chat-style Timeline */
+    .timeline-wrap { 
+      position: relative; 
+      padding: 30px 0 10px;
+      max-width: 900px;
+      margin: 0 auto;
     }
-    .timeline-node {
-      position: relative; width: 46%; padding: 16px 24px;
-      border-radius: 12px; background: var(--card);
-      box-shadow: 0 8px 24px rgba(2,6,23,0.35);
-      margin: 28px 0; transition: transform var(--transition);
+    .chat-message {
+      position: relative;
+      max-width: 70%;
+      padding: 20px 24px;
+      border-radius: 18px;
+      background: var(--card);
+      box-shadow: 0 4px 16px rgba(2,6,23,0.25);
+      margin: 24px 0;
+      animation: slideIn 0.5s ease-out;
     }
-    .timeline-node.left { left: 0; margin-right: auto; border-left: 4px solid var(--accent); }
-    .timeline-node.right { left: 50%; transform: translateX(8%); border-right: 4px solid var(--accent-2); }
-    .timeline-meta { font-size: 13px; color: var(--muted); margin-bottom: 6px; }
-    .timeline-role { font-weight: 700; color: var(--accent); }
-    @media (max-width:880px) {
-      .timeline-line { left: 20px; transform: none; }
-      .timeline-node { width: 100%; left: 48px; margin: 28px 0 28px 40px; border-left: 4px solid var(--accent); transform: none !important; }
-      .timeline-node.right { left: 48px; border-left: 4px solid var(--accent); }
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .chat-message.left {
+      margin-right: auto;
+      background: linear-gradient(135deg, var(--card), rgba(244, 180, 26, 0.1));
+      border-bottom-left-radius: 4px;
+      border-left: 4px solid var(--accent);
+    }
+    .chat-message.right {
+      margin-left: auto;
+      background: linear-gradient(135deg, var(--card), rgba(238, 123, 59, 0.1));
+      border-bottom-right-radius: 4px;
+      border-right: 4px solid var(--accent-2);
+    }
+    .chat-message:nth-child(1) { animation-delay: 0.1s; }
+    .chat-message:nth-child(2) { animation-delay: 0.2s; }
+    .chat-message:nth-child(3) { animation-delay: 0.3s; }
+    .chat-message:nth-child(4) { animation-delay: 0.4s; }
+    
+    .timeline-meta { 
+      font-size: 12px; 
+      color: var(--muted); 
+      margin-bottom: 8px; 
+      font-weight: 600;
+      opacity: 0.8;
+    }
+    .timeline-role { 
+      font-weight: 700; 
+      color: var(--accent); 
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+    .chat-message p {
+      margin: 0;
+      line-height: 1.6;
+      color: var(--text);
     }
 
-    /* Projects */
-    .projects-grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); }
+    /* Projects Grid */
+    .projects-grid { 
+      display: grid; 
+      gap: 24px; 
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    }
     .project-card {
-      background: var(--card); border-radius: 12px;
-      padding: 16px; box-shadow: 0 8px 22px rgba(2,6,23,0.35);
+      background: var(--card); 
+      border-radius: 16px;
+      padding: 24px; 
+      box-shadow: 0 8px 22px rgba(2,6,23,0.35);
+      transition: all var(--transition);
+      border-top: 3px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transform: scaleX(0);
       transition: transform var(--transition);
     }
-    .project-card:hover { transform: translateY(-8px); }
-    .project-card h4 { margin: 0 0 8px; color: var(--accent); }
-    .project-card p { margin: 0 0 12px; color: var(--muted); }
+    .project-card:hover::before {
+      transform: scaleX(1);
+    }
+    .project-card:hover { 
+      transform: translateY(-8px); 
+      box-shadow: 0 12px 32px rgba(2,6,23,0.45);
+    }
+    .project-card h4 { 
+      margin: 0 0 12px; 
+      color: var(--accent); 
+      font-size: 18px;
+    }
+    .project-card p { 
+      margin: 0 0 16px; 
+      color: var(--muted); 
+      line-height: 1.6;
+      font-size: 14px;
+    }
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .tech-tag {
+      background: var(--glass);
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      color: var(--accent);
+      border: 1px solid rgba(244, 180, 26, 0.2);
+    }
+    .project-card a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all var(--transition);
+    }
+    .project-card a:hover {
+      gap: 10px;
+      color: var(--accent-2);
+    }
 
     /* Contact */
     .contact-row {
@@ -158,9 +373,17 @@
     .contact-icon {
       width: 56px; height: 56px;
       display: inline-flex; align-items: center; justify-content: center;
-      border-radius: 12px; background: linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
+      border-radius: 12px; 
+      background: var(--card);
       font-size: 22px; color: var(--accent);
       box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+      transition: all var(--transition);
+      border: 2px solid transparent;
+    }
+    .contact-icon:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+      box-shadow: 0 8px 24px rgba(244, 180, 26, 0.4);
     }
     form {
       max-width: 720px; margin: 10px auto 40px;
@@ -170,20 +393,76 @@
     input, textarea {
       background: var(--card); border: 1px solid rgba(255,255,255,0.03);
       padding: 12px; border-radius: 10px; color: var(--text); font-size: 14px; min-height: 44px;
+      transition: all var(--transition);
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(244, 180, 26, 0.1);
     }
     textarea { min-height: 110px; }
     .submit-btn {
       grid-column: 1/-1; padding: 12px; border-radius: 10px; border: none;
       cursor: pointer; font-weight: 700;
       background: linear-gradient(90deg,var(--accent),var(--accent-2)); color: #041219;
+      transition: all var(--transition);
+      box-shadow: 0 4px 15px rgba(244, 180, 26, 0.3);
+    }
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(244, 180, 26, 0.5);
     }
     footer { padding: 30px 22px; text-align: center; color: var(--muted); font-size: 13px; }
+    
+    /* Enhanced Scroll to Top Button */
     #topBtn {
-      position: fixed; bottom: 26px; right: 26px;
-      background: var(--accent); color: #041219;
-      border: none; padding: 12px; border-radius: 12px;
-      cursor: pointer; display: none; z-index: 999;
-      box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+      position: fixed; 
+      bottom: 26px; 
+      right: 26px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #041219;
+      border: none; 
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer; 
+      display: none; 
+      z-index: 999;
+      box-shadow: 0 8px 28px rgba(244, 180, 26, 0.4);
+      font-size: 20px;
+      transition: all var(--transition);
+      align-items: center;
+      justify-content: center;
+    }
+    #topBtn:hover {
+      transform: translateY(-5px) rotate(360deg);
+      box-shadow: 0 12px 36px rgba(244, 180, 26, 0.6);
+    }
+    #topBtn::before {
+      content: '↑';
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-wrap: wrap;
+      }
+      header .right-group {
+        order: 3;
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 12px;
+      }
+      header nav {
+        width: 100%;
+      }
+      .hero h2 { font-size: 32px; }
+      .hero-visual { height: 200px; }
+      .skill-icon { width: 45px; height: 45px; font-size: 20px; }
+      .chat-message {
+        max-width: 85%;
+      }
     }
   </style>
 </head>
@@ -194,22 +473,48 @@
     <img src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" alt="logo" width="38"/>
     <h1>Dheeraj Pittala</h1>
   </div>
-  <nav>
-    <a href="#about">About</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
-  </nav>
-  <div class="controls"><button class="theme-btn" id="themeToggle">🌗</button></div>
+  <div class="right-group">
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="theme-btn" id="themeToggle">
+      <span id="themeIcon">🌙</span>
+    </button>
+  </div>
 </header>
 
 <section class="hero" id="home">
-  <h2>Dheeraj Pittala</h2>
-  <p>Data Analyst | Data Engineer | Data Scientist | AI / ML Engineer</p>
+  <div class="hero-visual">
+    <div class="skill-orbit">
+      <div class="skill-icon" title="Data Analysis">📊</div>
+      <div class="skill-icon" title="Data Engineering">⚙️</div>
+      <div class="skill-icon" title="Data Science">🔬</div>
+      <div class="skill-icon" title="AI/ML">🤖</div>
+      <div class="skill-icon" title="Cloud">☁️</div>
+    </div>
+  </div>
+  <div class="hero-center">
+    <h2>Dheeraj Pittala</h2>
+    <p>Data Analyst | Data Engineer | Data Scientist | AI / ML Engineer</p>
+  </div>
   <button class="cta" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Know more</button>
 </section>
 
 <section id="about">
-  <h3 class="section-title">About</h3>
+  <h3 class="section-title">About Me</h3>
   <div class="about-card">
-    <p>I’m a Data Analyst and Engineer passionate about transforming raw data into powerful business insights. With over 7 years of experience spanning analytics, cloud engineering, and automation, I specialize in streamlining ETL pipelines, enabling cloud-based data solutions, and delivering advanced visualizations. I’m driven by impact — from optimizing enterprise data architecture to enabling AI-driven business decisions that move organizations forward.</p>
+    <h4>🎓 My Journey</h4>
+    <p>My path in data began over 7 years ago when I discovered the power of turning raw information into actionable insights. Starting as a Software Engineer, I evolved through DevOps, eventually finding my true calling in data analytics and engineering. My academic pursuit at the University of North Texas further sharpened my expertise in advanced analytics, cloud architecture, and AI/ML applications.</p>
+    
+    <h4>💼 What I Do Today</h4>
+    <p>Currently, as a Data Analyst at UNT Transportation Services, I architect end-to-end data solutions that drive real business impact. I specialize in building automated ETL pipelines using Azure Data Factory, creating compelling Power BI dashboards that tell data stories, and developing predictive models that help organizations make smarter decisions. My work bridges the gap between complex data engineering and accessible business intelligence.</p>
+    
+    <h4>🚀 Vision for Tomorrow</h4>
+    <p>I'm passionate about pushing the boundaries of what's possible with data and AI. My vision is to lead transformative data initiatives that leverage cutting-edge technologies—from generative AI to real-time analytics—to solve complex business challenges. I aim to build scalable, intelligent systems that not only process data efficiently but also democratize insights across organizations, enabling everyone to make data-driven decisions with confidence.</p>
   </div>
 </section>
 
@@ -270,27 +575,25 @@
 <section id="experience">
   <h3 class="section-title">Professional Experience</h3>
   <div class="timeline-wrap">
-    <div class="timeline-line"></div>
-
-    <div class="timeline-node left">
+    <div class="chat-message left">
       <div class="timeline-meta">July 2024 – Present</div>
       <div class="timeline-role">Data Analyst | UNT Transportation Services, TX</div>
       <p>Automated ETL workflows using Azure Data Factory, improving data processing efficiency by 20%. Developed Power BI dashboards and predictive models enhancing reporting accuracy by 30%.</p>
     </div>
 
-    <div class="timeline-node right">
+    <div class="chat-message right">
       <div class="timeline-meta">Sept 2022 – May 2024</div>
       <div class="timeline-role">Junior Data Analyst | UNT Transportation Services, TX</div>
       <p>Implemented optimized database schemas and automated SQL processes. Reduced report generation time by 40% through dynamic Power BI integrations.</p>
     </div>
 
-    <div class="timeline-node left">
+    <div class="chat-message left">
       <div class="timeline-meta">Jan 2018 – Mar 2022</div>
       <div class="timeline-role">DevOps Engineer | Accretion Info Systems, India</div>
       <p>Developed CI/CD pipelines using Jenkins and Kubernetes for major clients (RIO-TINTO & CARVANA), enhancing deployment efficiency and uptime reliability.</p>
     </div>
 
-    <div class="timeline-node right">
+    <div class="chat-message right">
       <div class="timeline-meta">Aug 2017 – Jan 2018</div>
       <div class="timeline-role">Associate Software Engineer | Accretion Info Systems, India</div>
       <p>Optimized backend Java code and SQL queries, improving application performance and system scalability for enterprise-level clients.</p>
@@ -302,19 +605,69 @@
   <h3 class="section-title">Projects</h3>
   <div class="projects-grid">
     <div class="project-card">
-      <h4>Power BI Transportation Insights</h4>
-      <p>Developed a Power BI dashboard integrating SQL and Azure datasets for real-time transportation metrics.</p>
-      <a href="https://github.com/DheerajPittala8055/PowerBI-Transport" target="_blank">View Project →</a>
+      <h4>Video Game Sales Analysis</h4>
+      <p>Created interactive Tableau dashboards for comprehensive visual analysis of video game sales data with user-friendly attributes and insights.</p>
+      <div class="project-tech">
+        <span class="tech-tag">Tableau</span>
+        <span class="tech-tag">Data Visualization</span>
+        <span class="tech-tag">Analytics</span>
+      </div>
+      <a href="https://github.com/DheerajPittala8055/Video-Game-Sales-Analysis" target="_blank">View Project <i class="fas fa-arrow-right"></i></a>
     </div>
+    
     <div class="project-card">
-      <h4>Azure Data Pipeline Automation</h4>
-      <p>Created automated data pipelines using Azure Data Factory for live data refresh in Power BI.</p>
-      <a href="https://github.com/DheerajPittala8055/Azure-Pipeline-Automation" target="_blank">View Project →</a>
+      <h4>Credit Card Fraud Detection</h4>
+      <p>Built machine learning algorithms using Logistic Regression and Random Forest Classifier to accurately predict fraudulent credit card transactions.</p>
+      <div class="project-tech">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">Scikit-learn</span>
+        <span class="tech-tag">ML</span>
+      </div>
+      <a href="https://github.com/DheerajPittala8055/Credit-Card-Fraud-Detection" target="_blank">View Project <i class="fas fa-arrow-right"></i></a>
     </div>
+    
     <div class="project-card">
-      <h4>Sentiment Analysis System</h4>
-      <p>Designed an AI-powered Outlook email sentiment classifier using Python and NLP libraries.</p>
-      <a href="https://github.com/DheerajPittala8055/Sentiment-Analysis" target="_blank">View Project →</a>
+      <h4>Loan Approval Prediction</h4>
+      <p>Developed predictive ML models to forecast loan approval outcomes based on customer demographics and historical data patterns.</p>
+      <div class="project-tech">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">Machine Learning</span>
+        <span class="tech-tag">Pandas</span>
+      </div>
+      <a href="https://github.com/DheerajPittala8055/Loan-Approval-Prediction" target="_blank">View Project <i class="fas fa-arrow-right"></i></a>
+    </div>
+    
+    <div class="project-card">
+      <h4>Credit Card Approval Prediction</h4>
+      <p>Implemented Decision Tree, Random Forest, and Support Vector Classifiers to predict credit card approval with comprehensive performance metrics.</p>
+      <div class="project-tech">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">SVM</span>
+        <span class="tech-tag">Random Forest</span>
+      </div>
+      <a href="https://github.com/DheerajPittala8055/Credit-Card-Approval-Prediction" target="_blank">View Project <i class="fas fa-arrow-right"></i></a>
+    </div>
+    
+    <div class="project-card">
+      <h4>Cryptocurrency Price Prediction</h4>
+      <p>Built time-series forecasting models using FB Prophet and Support Vector Machine to predict cryptocurrency price trends.</p>
+      <div class="project-tech">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">Time Series</span>
+        <span class="tech-tag">Prophet</span>
+      </div>
+      <a href="https://github.com/DheerajPittala8055/Cryptocurrency-Price-Prediction" target="_blank">View Project <i class="fas fa-arrow-right"></i></a>
+    </div>
+    
+    <div class="project-card">
+      <h4>Gen AI Job Simulation</h4>
+      <p>Comprehensive execution of Generative AI job simulation, demonstrating practical applications and implementation strategies.</p>
+      <div class="project-tech">
+        <span class="tech-tag">Gen AI</span>
+        <span class="tech-tag">LLMs</span>
+        <span class="tech-tag">AI Implementation</span>
+      </div>
+      <a href="https://github.com/DheerajPittala8055/Gen-AI-Job-Simulation" target="_blank">View Project <i class="fas fa-arrow-right"></i></a>
     </div>
   </div>
 </section>
@@ -340,17 +693,28 @@
 </section>
 
 <footer>© 2025 Dheeraj Pittala. All Rights Reserved.</footer>
-<button id="topBtn" onclick="scrollTo({top:0,behavior:'smooth'})">⬆️</button>
+<button id="topBtn" onclick="scrollTo({top:0,behavior:'smooth'})"></button>
 
 <script>
   const toggle = document.getElementById("themeToggle");
+  const themeIcon = document.getElementById("themeIcon");
   const body = document.body;
+  
   toggle.onclick = () => {
     const theme = body.getAttribute("data-theme");
-    body.setAttribute("data-theme", theme === "light" ? "dark" : "light");
+    if (theme === "light") {
+      body.setAttribute("data-theme", "dark");
+      themeIcon.textContent = "🌙";
+    } else {
+      body.setAttribute("data-theme", "light");
+      themeIcon.textContent = "☀️";
+    }
   };
+  
   const topBtn = document.getElementById("topBtn");
-  window.onscroll = () => { topBtn.style.display = window.scrollY > 250 ? "block" : "none"; };
+  window.onscroll = () => { 
+    topBtn.style.display = window.scrollY > 250 ? "flex" : "none"; 
+  };
 </script>
 </body>
 </html>
