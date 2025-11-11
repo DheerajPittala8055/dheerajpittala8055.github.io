@@ -1,588 +1,413 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dheeraj Pittala</title>
-
-  <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
   <style>
-    :root{
-      --bg:#0f1720;              /* dark navy */
-      --card:#102533;            /* card bg dark */
-      --muted:#9aa7b2;           
-      --text:#e6eef3;
-      --accent:#f4b41a;          /* warm amber */
-      --accent-2:#ee7b3b;        /* complementary warm */
-      --glass: rgba(255,255,255,0.03);
-      --radius:14px;
-      --transition:300ms cubic-bezier(.2,.9,.2,1);
-    }
-    [data-theme="light"]{
-      --bg:#faf7f3;
-      --card:#ffffff;
-      --muted:#5b6b74;
-      --text:#122324;
-      --accent:#f4982b;
-      --accent-2:#e76f51;
-      --glass: rgba(2,6,23,0.02);
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
     }
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-      background:var(--bg);
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      transition: background var(--transition), color var(--transition);
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: #fdfaf7;
+      color: #333;
+      transition: background 0.3s, color 0.3s;
     }
 
-    /* ---------- Top Navigation ---------- */
-    header{
-      position:sticky; top:0; z-index:1200;
-      display:flex; align-items:center; justify-content:space-between;
-      padding:14px 22px;
-      background: linear-gradient(90deg, rgba(0,0,0,0.12), rgba(0,0,0,0.06));
-      backdrop-filter: blur(6px);
-      border-bottom: 1px solid rgba(255,255,255,0.03);
-    }
-    .brand{
-      display:flex; gap:12px; align-items:center;
-    }
-    .brand h1{font-size:18px; margin:0; font-weight:700; letter-spacing:0.2px}
-    nav{display:flex; gap:12px; align-items:center}
-    nav a{
-      color:var(--text); text-decoration:none; font-weight:600; font-size:14px;
-      padding:8px 10px; border-radius:8px; transition:all var(--transition);
-    }
-    nav a:hover{ background:var(--glass); transform: translateY(-2px) }
-
-    /* theme toggle placed near nav */
-    .controls{display:flex; align-items:center; gap:10px}
-    .theme-btn{
-      border: none; background: linear-gradient(90deg,var(--accent),var(--accent-2));
-      color:#04121a; padding:8px 10px; border-radius:10px; cursor:pointer; font-weight:700;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.25); transition: transform var(--transition);
-    }
-    .theme-btn:active{ transform: scale(.98) }
-
-    /* ---------- HERO ---------- */
-    .hero{
-      padding:92px 6% 56px;
-      display:flex; flex-direction:column; gap:10px; align-items:center;
-      text-align:center;
-      background: linear-gradient(180deg, rgba(244,180,26,0.08), rgba(238,123,59,0.02));
-    }
-    .hero h2{font-size:40px; margin:0; color:var(--accent)}
-    .hero p{margin:0; color:var(--text); font-weight:600; opacity:.95}
-    .hero .cta{
-      margin-top:18px; padding:12px 22px; border-radius:999px; border:none;
-      background:var(--accent); color:#071219; font-weight:700; cursor:pointer;
-      transition: transform var(--transition);
-    }
-    .hero .cta:hover{ transform: translateY(-3px) }
-
-    /* ---------- Sections ---------- */
-    section{max-width:1100px; margin:42px auto; padding:0 22px}
-    .section-title{ text-align:center; margin-bottom:22px; font-size:22px; color:var(--accent) }
-    .muted{ color:var(--muted); font-size:15px; }
-
-    /* ---------- ABOUT ---------- */
-    .about-card{
-      background:var(--card); border-radius:var(--radius); padding:26px;
-      box-shadow: 0 8px 30px rgba(2,6,23,0.45);
-      transform-origin:center; transition: transform var(--transition);
-    }
-    .about-card:hover{ transform: translateY(-8px) }
-    .about-card p{ font-size:16px; line-height:1.7; color:var(--text); margin:0 }
-
-    /* ---------- SKILLS (recalibrated & even) ---------- */
-    .skills-grid{
-      display:grid; gap:18px;
-      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
-      align-items:start;
-    }
-    .skill-group{
-      background:var(--card); border-radius:12px; padding:18px; min-height:150px;
-      box-shadow: 0 8px 20px rgba(2,6,23,0.35);
-      transition: transform var(--transition);
-    }
-    .skill-group:hover{ transform: translateY(-8px) }
-    .skill-head{ display:flex; gap:12px; align-items:center; margin-bottom:10px }
-    .skill-head img{ width:36px; height:36px; object-fit:contain; border-radius:8px }
-    .skill-head h4{ margin:0; font-size:16px; color:var(--accent); font-weight:700 }
-    .skill-list{ display:flex; flex-direction:column; gap:6px; margin-top:6px }
-    .skill-item{
-      display:flex; align-items:center; gap:10px; font-size:14px; color:var(--text);
-    }
-    .skill-bullet{
-      width:8px; height:8px; border-radius:50%; background:var(--accent); flex:0 0 8px;
-    }
-    .skill-subtext{ font-size:13px; color:var(--muted) }
-
-    /* ---------- EXPERIENCE - vertical timeline tree ---------- */
-    .timeline-wrap{ position:relative; padding:30px 0 10px; }
-    .timeline-line{
-      position:absolute; left:50%; width:4px; top:0; bottom:0; background:linear-gradient(180deg,var(--accent),var(--accent-2));
-      transform:translateX(-50%); border-radius:2px;
-    }
-    .timeline-node{ position:relative; width:50%; padding:16px 24px; border-radius:12px; background:var(--card);
-      box-shadow:0 8px 24px rgba(2,6,23,0.35); margin:18px 0; transition: transform var(--transition);
-    }
-    .timeline-node:hover{ transform: translateY(-6px) }
-    .timeline-left{ left:0; margin-right:auto; transform-origin:right; }
-    .timeline-right{ left:50%; transform-origin:left; }
-    .timeline-container{ position:relative; display:block; width:100%; }
-    .timeline-dot{
-      position:absolute; left:50%; transform:translateX(-50%); top:calc(50% - 10px);
-      width:20px; height:20px; border-radius:50%; border:4px solid var(--card);
-      background:var(--accent); z-index:10;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.25);
-    }
-    .timeline-meta{ font-size:13px; color:var(--muted); margin-bottom:8px }
-    .timeline-role{ font-weight:700; color:var(--accent) }
-
-    /* adjust positions for left/right nodes using wrappers */
-    .item-left{ margin-left:0; margin-right:auto; transform:translateX(-6%); }
-    .item-right{ margin-left:auto; margin-right:0; transform:translateX(6%); }
-
-    /* mobile timeline adjustments */
-    @media (max-width:880px){
-      .timeline-line{ left:20px; transform:none }
-      .timeline-node{ width:100%; left:48px; margin:18px 0 18px 40px }
-      .timeline-right{ left:48px }
-      .timeline-left{ left:48px }
-      .timeline-dot{ left:20px; transform:none }
+    body.dark {
+      background-color: #1e1e1e;
+      color: #f1f1f1;
     }
 
-    /* ---------- PROJECTS ---------- */
-    .projects-grid{ display:grid; gap:18px; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)) }
-    .project-card{ background:var(--card); border-radius:12px; padding:16px; min-height:140px;
-      box-shadow:0 8px 22px rgba(2,6,23,0.35); transition: transform var(--transition);
-    }
-    .project-card:hover{ transform: translateY(-8px) }
-    .project-card h4{ margin:0 0 8px 0; color:var(--accent) }
-    .project-card p{ margin:0 0 12px 0; color:var(--muted) }
-
-    .project-actions{ display:flex; gap:10px; align-items:center; flex-wrap:wrap }
-    .btn-ghost{ border:1px solid rgba(255,255,255,0.06); background:transparent; padding:8px 12px; border-radius:8px;
-      color:var(--text); text-decoration:none; font-weight:600; cursor:pointer;
-    }
-    .btn-primary{ background: linear-gradient(90deg,var(--accent),var(--accent-2)); color:#04121a; padding:8px 12px; border-radius:8px; text-decoration:none; font-weight:700; }
-
-    /* ---------- CONTACT & FORM ---------- */
-    .contact-row{ display:flex; gap:18px; justify-content:center; align-items:center; margin-bottom:16px }
-    .contact-icon{ width:56px; height:56px; display:inline-flex; align-items:center; justify-content:center; border-radius:12px;
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); font-size:22px; color:var(--accent);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
-    }
-    form{ max-width:720px; margin:10px auto 40px; display:grid; gap:12px; grid-template-columns:repeat(2,1fr) }
-    form .full{ grid-column:1/-1 }
-    input, textarea{
-      background:var(--card); border:1px solid rgba(255,255,255,0.03); padding:12px; border-radius:10px; color:var(--text);
-      font-size:14px; min-height:44px;
-    }
-    textarea{ min-height:110px; resize:vertical }
-    .submit-btn{ grid-column:1/-1; padding:12px; border-radius:10px; border:none; cursor:pointer; font-weight:700;
-      background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:#041219;
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background: #f4a261;
+      color: white;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 15px 50px;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
 
-    /* footer */
-    footer{ padding:30px 22px; text-align:center; color:var(--muted); font-size:13px }
+    header h1 { font-size: 24px; }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    nav a:hover { color: #264653; }
 
-    /* top button */
-    #topBtn{ position:fixed; bottom:26px; right:26px; background:var(--accent); color:#041219; border:none; padding:12px; border-radius:12px; cursor:pointer; display:none; z-index:999; box-shadow: 0 8px 28px rgba(0,0,0,0.35); }
+    .toggle-theme {
+      cursor: pointer;
+      font-size: 20px;
+      border: none;
+      background: none;
+      color: white;
+    }
 
-    /* subtle appear animations */
-    .fade-up{ opacity:0; transform: translateY(10px); transition: opacity 600ms ease, transform 600ms ease }
-    .fade-up.show{ opacity:1; transform:none }
+    section {
+      padding: 100px 10%;
+      min-height: 100vh;
+    }
+
+    h2.section-title {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    h2.section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: #e76f51;
+      margin: 10px auto 0;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(90deg, #f4a261, #e76f51);
+      color: white;
+      text-align: center;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      padding-top: 120px;
+    }
+    .hero h1 { font-size: 52px; margin-bottom: 10px; }
+    .hero h3 { font-size: 22px; margin-bottom: 30px; }
+    .hero button {
+      background: white;
+      color: #e76f51;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .hero button:hover { background: #e76f51; color: white; }
+
+    /* About Section */
+    .about p {
+      line-height: 1.8;
+      font-size: 18px;
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+
+    /* Skills Section */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+      justify-items: center;
+    }
+
+    .skill-card {
+      background: #fff;
+      border-radius: 15px;
+      padding: 25px;
+      width: 220px;
+      height: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s, background 0.3s;
+    }
+    body.dark .skill-card { background: #2c2c2c; }
+    .skill-card:hover { transform: translateY(-8px); }
+    .skill-card img {
+      width: 55px;
+      height: 55px;
+      margin-bottom: 15px;
+      object-fit: contain;
+    }
+    .skill-card h4 {
+      color: #e76f51;
+      margin-bottom: 10px;
+      font-size: 17px;
+    }
+
+    /* Timeline - Chat Flow */
+    .timeline {
+      position: relative;
+      margin: 50px auto;
+      max-width: 900px;
+    }
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      background: #e76f51;
+      top: 0; bottom: 0;
+      left: 50%;
+      margin-left: -2px;
+    }
+
+    .timeline-item {
+      padding: 20px 30px;
+      position: relative;
+      width: 50%;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    body.dark .timeline-item { background: #2c2c2c; }
+
+    .timeline-item.left { left: 0; }
+    .timeline-item.right { left: 50%; }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      top: 25px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #e76f51;
+      border: 4px solid #fff;
+      right: -10px;
+    }
+
+    .timeline-item.right::before {
+      left: -10px;
+    }
+
+    .timeline-item h4 {
+      color: #e76f51;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+    .timeline-item span {
+      font-size: 14px;
+      color: #777;
+    }
+    .timeline-item p {
+      margin-top: 10px;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      background: #fff;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .project-card:hover { transform: scale(1.05); }
+    body.dark .project-card { background: #2c2c2c; }
+    .project-card h4 { color: #e76f51; margin-bottom: 10px; }
+    .project-card a {
+      color: #264653;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .project-card a:hover { color: #e76f51; }
+
+    /* Contact Section */
+    .contact-icons {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .contact-icons a img {
+      width: 40px;
+      height: 40px;
+      margin: 0 15px;
+      transition: transform 0.3s;
+    }
+
+    .contact-icons a img:hover { transform: scale(1.15); }
+
+    form {
+      max-width: 600px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, textarea {
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      outline: none;
+    }
+
+    button.submit {
+      background: #e76f51;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+    button.submit:hover { background: #f4a261; }
+
+    /* Top Button */
+    #topBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #e76f51;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 20px;
+      display: none;
+    }
   </style>
 </head>
 <body>
-
-  <!-- NAV + THEME -->
   <header>
-    <div class="brand">
-      <img src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" alt="logo" width="38" style="border-radius:8px;"/>
-      <h1>Dheeraj Pittala</h1>
-    </div>
-
-    <nav aria-label="Main navigation">
+    <h1>Dheeraj Pittala</h1>
+    <nav>
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </nav>
-
-    <div class="controls">
-      <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">🌗</button>
-    </div>
+    <button class="toggle-theme">🌗</button>
   </header>
 
-  <!-- HERO -->
   <section class="hero" id="home">
-    <h2>Dheeraj Pittala</h2>
-    <p style="font-size:16px; font-weight:600;">Data Analyst | Data Engineer | Data Scientist | AI / ML Engineer</p>
-    <button class="cta" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Know more</button>
+    <h1>Dheeraj Pittala</h1>
+    <h3>Data Analyst | Data Engineer | Data Scientist | AI / ML Engineer</h3>
+    <button onclick="document.getElementById('about').scrollIntoView()">Know More</button>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <h3 class="section-title">About</h3>
-    <div class="about-card fade-up" id="aboutCard">
-      <!-- Polished combined about text drawn from LinkedIn & experiences -->
-      <p>
-        I am a results-driven data professional with a Master’s in Data Science and 7+ years of hands-on experience
-        across data analysis, engineering, and DevOps disciplines. I design and build scalable data pipelines,
-        automate ETL/ELT workflows, and deliver executive-grade BI dashboards that directly drive operational and
-        financial decisions. My work blends SQL/Python engineering, cloud platforms (Azure & GCP), and ML/Gen-AI
-        techniques to solve business problems — from automating financial reconciliations and real-time reporting
-        to prototyping GenAI chatbots and productionizing NLP pipelines for customer insights.
-      </p>
-    </div>
+  <section id="about" class="about">
+    <h2 class="section-title">About Me</h2>
+    <p>
+      I’m a Data Analyst and Data Engineer passionate about leveraging the power of data and AI
+      to generate actionable insights. With 7+ years of experience spanning Data Analytics, Engineering,
+      and DevOps, I specialize in building data pipelines, automating ETL workflows, and integrating
+      machine learning into production systems. My goal is to create intelligent, scalable solutions
+      that drive measurable business transformation.
+    </p>
   </section>
 
-  <!-- SKILLS -->
   <section id="skills">
-    <h3 class="section-title">Skills</h3>
-
-    <!-- Toggle placed visually near top right (user asked earlier) -->
-    <div style="text-align:right; margin-bottom:12px;">
-      <button class="theme-btn" onclick="toggleTheme()" aria-hidden="true">Toggle Theme</button>
-    </div>
-
-    <div class="skills-grid fade-up" id="skillsGrid">
-
-      <!-- Programming Languages -->
-      <div class="skill-group">
-        <div class="skill-head">
-          <img src="https://cdn-icons-png.flaticon.com/512/6124/6124995.png" alt="code">
-          <h4>Programming Languages</h4>
-        </div>
-        <div class="skill-list">
-          <div class="skill-item"><span class="skill-bullet"></span> SQL</div>
-          <div class="skill-item"><span class="skill-bullet"></span> Python</div>
-          <div class="skill-item"><span class="skill-bullet"></span> R</div>
-        </div>
-        <div class="skill-subtext" style="margin-top:10px">Strong query optimization, scripting and data manipulation (T-SQL, pandas, dplyr).</div>
-      </div>
-
-      <!-- Data Visualization -->
-      <div class="skill-group">
-        <div class="skill-head">
-          <img src="https://cdn-icons-png.flaticon.com/512/5948/5948532.png" alt="viz">
-          <h4>Data Visualization</h4>
-        </div>
-        <div class="skill-list">
-          <div class="skill-item"><span class="skill-bullet"></span> Power BI</div>
-          <div class="skill-item"><span class="skill-bullet"></span> Tableau</div>
-          <div class="skill-item"><span class="skill-bullet"></span> Excel (Power Pivot / Power Query)</div>
-          <div class="skill-item"><span class="skill-bullet"></span> Visio</div>
-        </div>
-        <div class="skill-subtext" style="margin-top:10px">Interactive executive dashboards & automated refresh pipelines.</div>
-      </div>
-
-      <!-- Databases & Platforms -->
-      <div class="skill-group">
-        <div class="skill-head">
-          <img src="https://cdn-icons-png.flaticon.com/512/904/904341.png" alt="db">
-          <h4>Databases & Platforms</h4>
-        </div>
-        <div class="skill-list">
-          <div class="skill-item"><span class="skill-bullet"></span> Azure</div>
-          <div class="skill-item"><span class="skill-bullet"></span> MS SQL Server</div>
-          <div class="skill-item"><span class="skill-bullet"></span> Hadoop / Hive / Spark</div>
-          <div class="skill-item"><span class="skill-bullet"></span> SAS VA</div>
-          <div class="skill-item"><span class="skill-bullet"></span> SSIS / SSRS</div>
-        </div>
-        <div class="skill-subtext" style="margin-top:10px">Enterprise storage, data lakes and OLTP/OLAP solutions.</div>
-      </div>
-
-      <!-- Data Engineering -->
-      <div class="skill-group">
-        <div class="skill-head">
-          <img src="https://cdn-icons-png.flaticon.com/512/732/732212.png" alt="data">
-          <h4>Data Engineering</h4>
-        </div>
-        <div class="skill-list">
-          <div class="skill-item"><span class="skill-bullet"></span> GCP (BigQuery, DataProc)</div>
-          <div class="skill-item"><span class="skill-bullet"></span> ETL / ELT</div>
-          <div class="skill-item"><span class="skill-bullet"></span> Azure Data Factory</div>
-          <div class="skill-item"><span class="skill-bullet"></span> Databricks / Snowflake</div>
-          <div class="skill-item"><span class="skill-bullet"></span> PySpark</div>
-        </div>
-        <div class="skill-subtext" style="margin-top:10px">Scalable pipelines, schema design, and data orchestration.</div>
-      </div>
-
-      <!-- ML & AI -->
-      <div class="skill-group">
-        <div class="skill-head">
-          <img src="https://cdn-icons-png.flaticon.com/512/1995/1995574.png" alt="ml">
-          <h4>ML & AI</h4>
-        </div>
-        <div class="skill-list">
-          <div class="skill-item"><span class="skill-bullet"></span> LLMs / NLP</div>
-          <div class="skill-item"><span class="skill-bullet"></span> Scikit-learn, TensorFlow, PyTorch</div>
-          <div class="skill-item"><span class="skill-bullet"></span> Azure AI / GenAI (chatbots, sentiment)</div>
-          <div class="skill-item"><span class="skill-bullet"></span> APIs (REST)</div>
-        </div>
-        <div class="skill-subtext" style="margin-top:10px">Model prototyping, evaluation (F1/AUC) and integration with dashboards & chat interfaces.</div>
-      </div>
-
-      <!-- DevOps & Automation -->
-      <div class="skill-group">
-        <div class="skill-head">
-          <img src="https://cdn-icons-png.flaticon.com/512/2721/2721275.png" alt="devops">
-          <h4>DevOps & Automation</h4>
-        </div>
-        <div class="skill-list">
-          <div class="skill-item"><span class="skill-bullet"></span> CI/CD (Jenkins)</div>
-          <div class="skill-item"><span class="skill-bullet"></span> Kubernetes, Docker</div>
-          <div class="skill-item"><span class="skill-bullet"></span> Git / GitHub</div>
-          <div class="skill-item"><span class="skill-bullet"></span> SCRUM / Agile (JIRA)</div>
-        </div>
-        <div class="skill-subtext" style="margin-top:10px">Automated releases, containerized workloads and release governance.</div>
-      </div>
-
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png"><h4>Programming Languages</h4><p>SQL, Python, R</p></div>
+      <div class="skill-card"><img src="https://cdn-icons-png.flaticon.com/512/2965/2965335.png"><h4>Data Visualization</h4><p>Power BI, Tableau, Excel, Visio</p></div>
+      <div class="skill-card"><img src="https://cdn-icons-png.flaticon.com/512/2921/2921822.png"><h4>Databases & Platforms</h4><p>Azure, SQL Server, Hadoop, Spark, Hive, SSIS, SSRS</p></div>
+      <div class="skill-card"><img src="https://cdn-icons-png.flaticon.com/512/4144/4144782.png"><h4>Data Engineering</h4><p>GCP, ETL/ELT, ADF, Databricks, Snowflake, PySpark</p></div>
+      <div class="skill-card"><img src="https://cdn-icons-png.flaticon.com/512/859/859270.png"><h4>ML & AI</h4><p>TensorFlow, PyTorch, NLP, LLMs, APIs, Gen AI</p></div>
+      <div class="skill-card"><img src="https://cdn-icons-png.flaticon.com/512/2889/2889676.png"><h4>DevOps & Automation</h4><p>Jenkins, Kubernetes, Docker, Git, Agile</p></div>
     </div>
   </section>
 
-  <!-- EXPERIENCE (timeline/tree) -->
   <section id="experience">
-    <h3 class="section-title">Professional Experience</h3>
-
-    <!-- Combined professional paragraph (polished, non-exact) -->
-    <div style="max-width:1000px;margin:0 auto 20px;">
-      <div class="about-card fade-up">
-        <p>
-          Over the past several years I’ve led initiatives spanning analytics, data engineering and DevOps—automating ETL pipelines,
-          building executive dashboards, and deploying CI/CD processes to accelerate delivery. My work has reduced manual reporting time,
-          increased data accuracy, and delivered ML-driven insights and prototypes (including GenAI chatbots) that improved customer experience
-          and operational efficiency across higher-education and enterprise clients.
-        </p>
-      </div>
-    </div>
-
-    <div class="timeline-wrap fade-up" id="timeline">
-      <div class="timeline-line" aria-hidden="true"></div>
-
-      <!-- Most recent: Ecolab (left/top) -->
-      <div class="timeline-container">
-        <div class="timeline-dot" style="top:28px"></div>
-        <div class="timeline-node timeline-left item-left" style="position:relative; margin-top:6px; left:0; width:46%;">
-          <div class="timeline-meta">May 2025 — Present</div>
-          <div class="timeline-role">Business Data Analyst — Ecolab (Contract)</div>
-          <p style="margin-top:8px; color:var(--text);">
-            Led automation of financial reporting dashboards and reconciliations using Power BI, SQL and Python, shortening financial close cycles and enabling KPI-driven executive reporting and customer segmentation analyses that improved retention and operational decision-making.
-          </p>
-        </div>
+    <h2 class="section-title">Professional Experience</h2>
+    <div class="timeline">
+      <div class="timeline-item left">
+        <h4>Business Data Analyst | Ecolab, USA</h4>
+        <span>May 2025 – Present</span>
+        <p>Automated financial reporting and KPI dashboards in Power BI/Tableau. Streamlined financial processes with SQL/Python, reducing reporting time by 35% and enhancing decision-making efficiency.</p>
       </div>
 
-      <!-- UNT Transportation (right) -->
-      <div class="timeline-container">
-        <div class="timeline-dot" style="top:170px"></div>
-        <div class="timeline-node timeline-right item-right" style="position:relative; left:50%; width:46%;">
-          <div class="timeline-meta">Jul 2024 — Jun 2025</div>
-          <div class="timeline-role">Data Analyst — UNT Transportation & Parking Services</div>
-          <p style="margin-top:8px; color:var(--text);">
-            Built advanced Power BI dashboards, resolved ingestion & schema issues, automated ETL workflows and prototyped ML & GenAI solutions (including a chatbot and sentiment models) to improve reporting cadence and customer support workflows.
-          </p>
-        </div>
+      <div class="timeline-item right">
+        <h4>Data Analyst | UNT Transportation Services, USA</h4>
+        <span>Jul 2024 – Jun 2025</span>
+        <p>Developed advanced BI dashboards and automated ETL pipelines using Azure Data Factory. Improved reporting accuracy by 30% and deployed GenAI-powered chatbot reducing repetitive queries.</p>
       </div>
 
-      <!-- Junior Data Analyst (left) -->
-      <div class="timeline-container">
-        <div class="timeline-dot" style="top:320px"></div>
-        <div class="timeline-node timeline-left item-left" style="position:relative; left:0; width:46%;">
-          <div class="timeline-meta">Aug 2022 — May 2024</div>
-          <div class="timeline-role">Junior Data Analyst — UNT Transportation & Parking Services (Intern)</div>
-          <p style="margin-top:8px; color:var(--text);">
-            Implemented database models and optimized SQL queries; executed A/B testing and ML-based occupancy forecasting, and improved dashboard update frequency and report accuracy through automation and master data governance.
-          </p>
-        </div>
+      <div class="timeline-item left">
+        <h4>Junior Data Analyst | UNT Transportation Services, USA</h4>
+        <span>Aug 2022 – May 2024</span>
+        <p>Optimized SQL queries, reduced processing time by 30%, and built machine learning models predicting resource demand for DCTA buses.</p>
       </div>
 
-      <!-- DevOps Engineer (right) -->
-      <div class="timeline-container">
-        <div class="timeline-dot" style="top:470px"></div>
-        <div class="timeline-node timeline-right item-right" style="position:relative; left:50%; width:46%;">
-          <div class="timeline-meta">Jan 2018 — Mar 2022</div>
-          <div class="timeline-role">DevOps Engineer — Accretion Info Systems</div>
-          <p style="margin-top:8px; color:var(--text);">
-            Automated CI/CD pipelines with Jenkins and container orchestration using Kubernetes; supported builds, deployment troubleshooting, and managed cloud storage/processing for enterprise data workloads.
-          </p>
-        </div>
+      <div class="timeline-item right">
+        <h4>DevOps Engineer | Accretion Info Systems, India</h4>
+        <span>Jan 2018 – Mar 2022</span>
+        <p>Implemented CI/CD pipelines using Jenkins and Kubernetes. Automated deployment systems for enterprise clients, enhancing software delivery efficiency.</p>
       </div>
 
-      <!-- Associate Software Engineer (left, earliest) -->
-      <div class="timeline-container">
-        <div class="timeline-dot" style="top:620px"></div>
-        <div class="timeline-node timeline-left item-left" style="position:relative; left:0; width:46%; margin-bottom:40px;">
-          <div class="timeline-meta">Aug 2017 — Dec 2017</div>
-          <div class="timeline-role">Associate Software Engineer — Accretion Info Systems</div>
-          <p style="margin-top:8px; color:var(--text);">
-            Contributed to backend development and query optimization, and adopted Agile practices to improve release cadence and reporting across projects.
-          </p>
-        </div>
+      <div class="timeline-item left">
+        <h4>Associate Software Engineer | Accretion Info Systems, India</h4>
+        <span>Aug 2017 – Dec 2017</span>
+        <p>Developed backend logic and optimized queries in Java-based systems, improving database performance and product delivery timelines by 20%.</p>
       </div>
-
     </div>
   </section>
 
-  <!-- PROJECTS -->
   <section id="projects">
-    <h3 class="section-title">Projects</h3>
-
-    <div class="projects-grid fade-up">
-      <!-- BCG Chatbot (GenAI) -->
-      <div class="project-card">
-        <h4>BCG Chatbot (GenAI)</h4>
-        <p class="muted">Built an NLP-powered GenAI chatbot that interprets 10-K and 10-Q filings to generate user-friendly insights and summaries.</p>
-        <div class="project-actions">
-          <a class="btn-primary" href="https://github.com/DheerajPittala8055/bcg-chatbot" target="_blank" rel="noopener">Open repo</a>
-          <a class="btn-ghost" href="https://github.com/DheerajPittala8055" target="_blank" rel="noopener">All repos</a>
-        </div>
-      </div>
-
-      <!-- Video Game Sales Analysis -->
-      <div class="project-card">
-        <h4>Video Game Sales Analysis (SQL, Tableau)</h4>
-        <p class="muted">Analyzed historical sales, platform trends and published interactive Tableau dashboards to inform product/marketing strategy.</p>
-        <div class="project-actions">
-          <a class="btn-primary" href="https://github.com/DheerajPittala8055/video-game-sales-analysis" target="_blank" rel="noopener">Open repo</a>
-          <a class="btn-ghost" href="https://public.tableau.com" target="_blank" rel="noopener">View dashboard</a>
-        </div>
-      </div>
-
-      <!-- Student Mental Health -->
-      <div class="project-card">
-        <h4>Student Mental Health (GCP)</h4>
-        <p class="muted">Processed survey and healthcare data streams on GCP, identifying support gaps via dashboards and real-time alerts for interventions.</p>
-        <div class="project-actions">
-          <a class="btn-primary" href="https://github.com/DheerajPittala8055/student-mental-health" target="_blank" rel="noopener">Open repo</a>
-          <a class="btn-ghost" href="https://github.com/DheerajPittala8055" target="_blank" rel="noopener">All repos</a>
-        </div>
-      </div>
-
-      <!-- Credit Card Fraud Prediction -->
-      <div class="project-card">
-        <h4>Credit Card Fraud Prediction</h4>
-        <p class="muted">Built logistic regression & random forest models, compared F1 scores and implemented a validation pipeline to detect fraudulent transactions.</p>
-        <div class="project-actions">
-          <a class="btn-primary" href="https://github.com/DheerajPittala8055/credit-card-fraud-prediction" target="_blank" rel="noopener">Open repo</a>
-          <a class="btn-ghost" href="https://github.com/DheerajPittala8055" target="_blank" rel="noopener">All repos</a>
-        </div>
-      </div>
-
-      <!-- Crypto Price Forecasting -->
-      <div class="project-card">
-        <h4>Crypto Price Forecasting</h4>
-        <p class="muted">Modeled historical crypto prices using FB Prophet & SVM to deliver accurate short-term forecasts for actionable trading signals.</p>
-        <div class="project-actions">
-          <a class="btn-primary" href="https://github.com/DheerajPittala8055/crypto-price-forecasting" target="_blank" rel="noopener">Open repo</a>
-          <a class="btn-ghost" href="https://github.com/DheerajPittala8055" target="_blank" rel="noopener">All repos</a>
-        </div>
-      </div>
-
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card"><h4>BCG Chatbot (GenAI)</h4><p>Built NLP chatbot enabling user-friendly insights interpreting 10-K, 10-Q reports.</p><a href="https://github.com/DheerajPittala8055" target="_blank">View on GitHub</a></div>
+      <div class="project-card"><h4>Video Game Sales Analysis</h4><p>Analyzed sales trends using SQL & Tableau; published dashboards to inform strategy.</p><a href="https://github.com/DheerajPittala8055" target="_blank">View on GitHub</a></div>
+      <div class="project-card"><h4>Student Mental Health (GCP)</h4><p>Processed real-time survey and healthcare data; visualized support gaps for intervention.</p><a href="https://github.com/DheerajPittala8055" target="_blank">View on GitHub</a></div>
+      <div class="project-card"><h4>Credit Card Fraud Prediction</h4><p>Developed ML models using Logistic Regression & Random Forest; improved F1-score accuracy.</p><a href="https://github.com/DheerajPittala8055" target="_blank">View on GitHub</a></div>
+      <div class="project-card"><h4>Crypto Price Forecasting</h4><p>Applied FB Prophet & SVM for short-term crypto price predictions with high accuracy.</p><a href="https://github.com/DheerajPittala8055" target="_blank">View on GitHub</a></div>
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact">
-    <h3 class="section-title">Contact</h3>
-
-    <div class="contact-row">
-      <a class="contact-icon" href="mailto:dheerajkmp8055@gmail.com" title="Email"><i class="fa-solid fa-envelope" style="font-size:20px;color:var(--accent)"></i></a>
-      <a class="contact-icon" href="https://www.linkedin.com/in/dheeraj-pittala/" title="LinkedIn" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin" style="font-size:20px;color:var(--accent)"></i></a>
-      <a class="contact-icon" href="https://github.com/DheerajPittala8055" title="GitHub" target="_blank" rel="noopener"><i class="fa-brands fa-github" style="font-size:20px;color:var(--accent)"></i></a>
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-icons">
+      <a href="https://www.linkedin.com/in/dheeraj-pittala/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn"></a>
+      <a href="mailto:dheerajkmp8055@gmail.com"><img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email"></a>
+      <a href="https://github.com/DheerajPittala8055" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub"></a>
     </div>
+    <p style="text-align:center;">📞 +1 940 333 5445</p>
 
-    <p style="text-align:center; color:var(--muted); margin-bottom:16px;">Mobile: <strong style="color:var(--text)">+1 940 333 5445</strong></p>
-
-    <h4 style="text-align:center; margin-top:10px; margin-bottom:8px; color:var(--accent)">Submit a Form</h4>
-
-    <!-- FormSubmit integration (sends to your Gmail) -->
-    <form action="https://formsubmit.co/dheerajkmp8055@gmail.com" method="POST" onsubmit="submittedToast(event)">
-      <!-- protect: you can optionally add a hidden _captcha field if required by FormSubmit -->
-      <input type="hidden" name="_subject" value="New portfolio message from website">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_next" value="https://dheerajpittala.github.io/thankyou.html">
-
-      <input name="name" type="text" placeholder="Full Name" required>
-      <input name="email" type="email" placeholder="E-mail" required>
-      <input name="mobile" type="tel" placeholder="Mobile Number" required>
-      <input name="subject" type="text" placeholder="Subject" required>
-      <textarea name="description" placeholder="Description" class="full" required></textarea>
-
-      <button type="submit" class="submit-btn">Send Message</button>
+    <h3 style="text-align:center;margin-top:30px;">Submit a Form</h3>
+    <form action="https://formsubmit.co/dheerajkmp8055@gmail.com" method="POST">
+      <input type="text" name="name" placeholder="Full Name" required>
+      <input type="email" name="email" placeholder="E-mail" required>
+      <input type="text" name="mobile" placeholder="Mobile Number" required>
+      <input type="text" name="subject" placeholder="Subject" required>
+      <textarea name="description" placeholder="Description" rows="4" required></textarea>
+      <button class="submit" type="submit">Send Message</button>
     </form>
   </section>
 
-  <footer>
-    <div style="max-width:1100px;margin:0 auto; padding:8px 22px;">
-      <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
-        <div style="color:var(--muted)">© 2025 Dheeraj Pittala</div>
-        <div style="color:var(--muted)">Built with HTML • CSS • JS — Hosted on GitHub Pages</div>
-      </div>
-    </div>
-  </footer>
-
-  <button id="topBtn" title="Go to top">↑</button>
+  <button id="topBtn" onclick="scrollToTop()">⬆</button>
 
   <script>
-    // ---------------- Theme toggle ----------------
-    const themeToggleBtn = document.getElementById('themeToggle');
-    function setInitialTheme(){
-      const stored = localStorage.getItem('theme');
-      if(stored === 'light') document.documentElement.setAttribute('data-theme','light');
-    }
-    setInitialTheme();
-    themeToggleBtn.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme');
-      if(current === 'light'){
-        document.documentElement.removeAttribute('data-theme');
-        localStorage.removeItem('theme');
-      } else {
-        document.documentElement.setAttribute('data-theme','light');
-        localStorage.setItem('theme','light');
-      }
-    });
-    function toggleTheme(){ themeToggleBtn.click(); }
+    const themeToggle = document.querySelector('.toggle-theme');
+    themeToggle.onclick = () => document.body.classList.toggle('dark');
 
-    // ---------------- Show/hide Top button ----------------
     const topBtn = document.getElementById('topBtn');
-    window.addEventListener('scroll', () => {
-      topBtn.style.display = (window.scrollY > 380) ? 'block' : 'none';
-    });
-    topBtn.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
-
-    // ---------------- simple fade-up on scroll ----------------
-    const faders = document.querySelectorAll('.fade-up');
-    const appearOptions = { threshold: 0.12, rootMargin: "0px 0px -20px 0px" };
-    const appearOnScroll = new IntersectionObserver(function(entries, observer){
-      entries.forEach(entry => {
-        if(!entry.isIntersecting) return;
-        entry.target.classList.add('show');
-        observer.unobserve(entry.target);
-      });
-    }, appearOptions);
-    faders.forEach(fader => appearOnScroll.observe(fader));
-
-    // ---------------- Form submit helper (optional UX) ----------------
-    function submittedToast(e){
-      // Allow default FormSubmit behavior (redirect). We just show a brief toast if JS enabled.
-      // No need to block submission.
-    }
-
-    // ---------------- Replace project links quickly if you use different repo slugs ----------
-    // If your real repo names differ from the guessed slugs, replace the hrefs in project-card anchors.
-  </script>
-</body>
-</html>
+    window.onscroll = () => {
+      topBtn.style.display = document.documentElement.scrollTop > 300
