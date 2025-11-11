@@ -3,242 +3,464 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dheeraj Kumar Madhav Pittala | Portfolio</title>
+  <title>Dheeraj Pittala</title>
   <style>
     :root {
-      --bg-color: #f9f9fb;
-      --text-color: #1f1f1f;
-      --accent-color: #0078d4;
-      --card-bg: #ffffff;
-    }
-
-    [data-theme="dark"] {
       --bg-color: #1a1a1a;
       --text-color: #f0f0f0;
-      --accent-color: #3ea6ff;
-      --card-bg: #2a2a2a;
+      --accent-color: #d4af37; /* gold */
+      --secondary-color: #800020; /* burgundy */
+    }
+
+    body.light {
+      --bg-color: #ffffff;
+      --text-color: #222222;
+      --accent-color: #b8860b;
+      --secondary-color: #800020;
     }
 
     body {
+      font-family: "Poppins", sans-serif;
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
-      transition: background 0.3s, color 0.3s;
+      transition: background 0.4s, color 0.4s;
     }
 
     header {
-      text-align: center;
-      padding: 2rem 1rem;
-      background: var(--card-bg);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background-color: var(--bg-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid var(--accent-color);
     }
 
-    h1 {
-      margin: 0;
-      font-size: 2rem;
+    header h1 {
+      color: var(--accent-color);
+      font-size: 1.8rem;
     }
 
-    h2 {
-      margin-top: 0.5rem;
-      font-weight: 400;
+    nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: 500;
+    }
+
+    nav a:hover {
       color: var(--accent-color);
     }
 
-    .theme-toggle {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: var(--accent-color);
-      border: none;
-      color: white;
-      padding: 0.5rem 1rem;
+    .toggle-btn {
+      background: none;
+      border: 2px solid var(--accent-color);
+      color: var(--accent-color);
       border-radius: 20px;
+      padding: 0.3rem 1rem;
       cursor: pointer;
+      font-weight: 600;
     }
 
     section {
-      max-width: 1000px;
-      margin: 2rem auto;
-      background: var(--card-bg);
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: auto;
     }
 
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1rem;
-    }
-
-    .skill-box {
-      background: var(--bg-color);
-      border-radius: 10px;
-      padding: 1rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      text-align: left;
-      font-size: 0.95rem;
-    }
-
-    .timeline {
-      border-left: 3px solid var(--accent-color);
-      margin-left: 1rem;
-      padding-left: 1.5rem;
-    }
-
-    .timeline-item {
+    h2 {
+      text-align: center;
+      color: var(--accent-color);
       margin-bottom: 1.5rem;
     }
 
-    .timeline-item h3 {
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 5rem 2rem;
+    }
+    .hero h2 {
+      color: var(--accent-color);
+      font-size: 2rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-color);
+    }
+
+    /* About */
+    .about p {
+      line-height: 1.8;
+      text-align: center;
+      font-size: 1.05rem;
+      color: var(--text-color);
+    }
+
+    /* Skills Section */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .skill-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--accent-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .skill-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .skill-box img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      margin-bottom: 0.8rem;
+    }
+
+    .skill-box h3 {
+      color: var(--accent-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .skill-box p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Timeline Experience */
+    .timeline {
+      position: relative;
+      margin: 3rem auto;
+      padding: 1rem 0;
+      max-width: 1000px;
+    }
+
+    .timeline::after {
+      content: "";
+      position: absolute;
+      width: 3px;
+      background: var(--accent-color);
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      padding: 1rem;
+      position: relative;
+      width: 50%;
+    }
+
+    .timeline-item.left {
+      left: 0;
+      text-align: right;
+    }
+
+    .timeline-item.right {
+      left: 50%;
+      text-align: left;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      top: 20px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--secondary-color);
+      border: 3px solid var(--accent-color);
+      z-index: 1;
+    }
+
+    .timeline-item.left::before {
+      right: -11px;
+    }
+
+    .timeline-item.right::before {
+      left: -11px;
+    }
+
+    .timeline-content {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1.2rem;
+      border-radius: 10px;
+      border: 1px solid var(--accent-color);
+      display: inline-block;
+    }
+
+    .timeline-content h3 {
+      color: var(--accent-color);
+      margin: 0 0 0.5rem 0;
+    }
+
+    .timeline-content p {
       margin: 0;
-      font-size: 1.1rem;
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--accent-color);
+      border-radius: 12px;
+      padding: 1.2rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .project-card h3 {
       color: var(--accent-color);
     }
 
-    .timeline-item p {
-      margin: 0.3rem 0 0.2rem;
-      font-size: 0.95rem;
+    .project-card a {
+      text-decoration: none;
+      color: var(--secondary-color);
+      font-weight: 600;
     }
 
+    /* Contact */
     .contact-icons {
       display: flex;
-      gap: 1rem;
+      justify-content: center;
+      gap: 1.5rem;
       margin-bottom: 1rem;
     }
 
-    .contact-icons img {
-      width: 28px;
-      height: 28px;
-      transition: transform 0.2s;
+    .contact-icons a img {
+      width: 35px;
+      height: 35px;
+      transition: transform 0.3s;
     }
 
-    .contact-icons img:hover {
-      transform: scale(1.1);
+    .contact-icons a:hover img {
+      transform: scale(1.2);
     }
 
     form {
+      max-width: 600px;
+      margin: 1.5rem auto;
       display: flex;
       flex-direction: column;
-      gap: 0.8rem;
-      margin-top: 1rem;
+      gap: 1rem;
     }
 
     .form-row {
       display: flex;
-      gap: 0.8rem;
+      gap: 1rem;
     }
 
     input, textarea {
-      padding: 0.8rem;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
       width: 100%;
-      box-sizing: border-box;
+      padding: 0.8rem;
+      border-radius: 8px;
+      border: 1px solid var(--accent-color);
+      background: transparent;
+      color: var(--text-color);
+      font-size: 1rem;
     }
 
     textarea {
-      min-height: 140px;
-      resize: vertical;
+      height: 150px;
+      resize: none;
     }
 
     button {
-      background: var(--accent-color);
+      background: var(--secondary-color);
       border: none;
-      color: white;
+      color: #fff;
       padding: 0.8rem;
       border-radius: 8px;
       font-size: 1rem;
       cursor: pointer;
+      transition: background 0.3s;
     }
 
     button:hover {
-      background: #005ea8;
+      background: var(--accent-color);
+      color: #000;
     }
 
     footer {
       text-align: center;
-      padding: 1rem;
-      color: #777;
+      padding: 1.5rem;
       font-size: 0.9rem;
+      border-top: 1px solid var(--accent-color);
+      color: var(--text-color);
+    }
+
+    #topBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--accent-color);
+      border: none;
+      color: #000;
+      padding: 10px 14px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-weight: bold;
     }
   </style>
 </head>
 
 <body>
-  <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
-
   <header>
-    <h1>Dheeraj Kumar Madhav Pittala</h1>
-    <h2>Data Analyst | Data Engineer | Data Scientist | AI / ML Engineer</h2>
+    <h1>Dheeraj Pittala</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="toggle-btn" onclick="toggleTheme()">🌙 / ☀️</button>
   </header>
 
-  <section id="about">
+  <section class="hero">
+    <h2>Data Analyst | Data Engineer | Data Scientist | AI / ML Engineer</h2>
+    <p>Transforming complex data into actionable insights using analytics, cloud, and AI.</p>
+  </section>
+
+  <section id="about" class="about">
     <h2>About Me</h2>
-    <p>Data-driven professional with 7+ years of experience in Data Analysis, Data Engineering, and DevOps. Skilled in designing scalable data pipelines, cloud integration, and advanced analytics to drive business outcomes. Passionate about leveraging data for decision-making and digital transformation.</p>
+    <p>I am a data-driven professional with 7+ years of experience across Data Analysis, Engineering, and DevOps. 
+    Passionate about building efficient data systems, automating pipelines, and developing AI-driven insights that 
+    enhance decision-making. I combine technical expertise with business acumen to transform data into impactful 
+    solutions that support strategic goals.</p>
   </section>
 
   <section id="skills">
     <h2>Skills</h2>
     <div class="skills-grid">
-      <div class="skill-box"><strong>Data Analysis & BI:</strong><br> SQL, Python (Pandas, NumPy, Matplotlib), Power BI (DAX), Tableau, Excel (Macros), Visio</div>
-      <div class="skill-box"><strong>Databases & Platforms:</strong><br> Azure, MS SQL Server, Hadoop, Hive, Spark, SAP Crystal Reports, SAS VA, SSIS, SSRS</div>
-      <div class="skill-box"><strong>Data Engineering:</strong><br> Azure Data Factory, Databricks, Snowflake, PySpark, GCP (BigQuery, DataProc), ETL, ELT</div>
-      <div class="skill-box"><strong>ML & AI:</strong><br> LLMs, NLP, Scikit-learn, TensorFlow, PyTorch, Azure AI, Gen AI (chatbots, sentiment), APIs (REST)</div>
-      <div class="skill-box"><strong>DevOps & Automation:</strong><br> CI/CD (Jenkins), Kubernetes, Docker, Git/GitHub, SCRUM, Agile (JIRA, SCRUM)</div>
+      <div class="skill-box">
+        <img src="https://img.icons8.com/color/96/000000/combo-chart.png" alt="Data Analysis" />
+        <h3>Data Analysis & BI</h3>
+        <p>SQL, Python (Pandas, NumPy, Matplotlib), Power BI (DAX), Tableau, Excel (Macros), Visio</p>
+      </div>
+      <div class="skill-box">
+        <img src="https://img.icons8.com/color/96/000000/database.png" alt="Databases" />
+        <h3>Databases & Platforms</h3>
+        <p>Azure, MS SQL Server, Hadoop, Hive, Spark, SAP Crystal Reports, SAS VA, SSIS, SSRS</p>
+      </div>
+      <div class="skill-box">
+        <img src="https://img.icons8.com/color/96/000000/data-configuration.png" alt="Data Engineering" />
+        <h3>Data Engineering</h3>
+        <p>Azure Data Factory, Databricks, Snowflake, PySpark, GCP (BigQuery, DataProc), ETL, ELT</p>
+      </div>
+      <div class="skill-box">
+        <img src="https://img.icons8.com/color/96/000000/artificial-intelligence.png" alt="AI" />
+        <h3>ML & AI</h3>
+        <p>LLMs, NLP, Scikit-learn, TensorFlow, PyTorch, Azure AI, Gen AI (chatbots, sentiment), APIs (REST)</p>
+      </div>
+      <div class="skill-box">
+        <img src="https://img.icons8.com/color/96/000000/automation.png" alt="Automation" />
+        <h3>DevOps & Automation</h3>
+        <p>CI/CD (Jenkins), Kubernetes, Docker, Git/GitHub, SCRUM, Agile (JIRA, SCRUM)</p>
+      </div>
     </div>
   </section>
 
   <section id="experience">
     <h2>Professional Experience</h2>
     <div class="timeline">
-      <div class="timeline-item">
-        <h3>Data Analyst — UNT Transportation Services</h3>
-        <p><em>Jul 2024 – Present | Denton, TX</em></p>
-        <p>Optimized ETL pipelines improving data accuracy by 30%. Automated workflows, designed Power BI dashboards, and developed predictive analytics models.</p>
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <h3>Business Data Analyst | Ecolab, USA | May 2025 – Present</h3>
+          <p>Automating reporting systems using Power BI/Tableau and SQL, enhancing real-time analytics by 35%. Streamlined data pipelines, improving data accuracy and reporting efficiency while delivering KPI insights for executive decisions.</p>
+        </div>
       </div>
-      <div class="timeline-item">
-        <h3>Junior Data Analyst — UNT Transportation Services</h3>
-        <p><em>Sep 2022 – May 2024 | Denton, TX</em></p>
-        <p>Reduced data retrieval times by 40% through schema optimization and Azure Data Factory orchestration.</p>
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <h3>Data Analyst | UNT Transportation, USA | Jul 2024 – Jun 2025</h3>
+          <p>Developed automated dashboards, enhanced ETL workflows in Azure Data Factory, and designed sentiment analysis using ML, improving service prioritization and data efficiency by 20%.</p>
+        </div>
       </div>
-      <div class="timeline-item">
-        <h3>DevOps Engineer — Accretion Info Systems Pvt. Ltd.</h3>
-        <p><em>Jan 2018 – Mar 2022 | India</em></p>
-        <p>Developed CI/CD pipelines using Jenkins and Kubernetes, deploying scalable solutions for enterprise clients like Rio Tinto and Carvana.</p>
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <h3>Junior Data Analyst | UNT Transportation, USA | Aug 2022 – May 2024</h3>
+          <p>Optimized SQL queries cutting data retrieval by 30%, designed database models, and implemented predictive models for transportation planning, improving operational accuracy by 25%.</p>
+        </div>
+      </div>
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <h3>DevOps Engineer | Accretion Info Systems, India | Jan 2018 – Mar 2022</h3>
+          <p>Built CI/CD pipelines using Jenkins & Kubernetes, automated releases, and integrated Azure storage solutions to optimize deployment and improve system reliability.</p>
+        </div>
+      </div>
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <h3>Associate Software Engineer | Accretion Info Systems, India | Aug 2017 – Dec 2017</h3>
+          <p>Developed Java-based backend systems, optimized queries, and leveraged Agile methodologies to improve delivery timelines and success rates by 20%.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <section id="projects">
     <h2>Projects</h2>
-    <ul>
-      <li><strong>Predictive Ridership Model:</strong> Built a forecasting model for UNT Transit demand using Python, increasing resource allocation accuracy by 25%.</li>
-      <li><strong>Data Migration to Azure:</strong> Migrated 2TB of SQL data to Azure Data Lake with ADF pipelines, ensuring zero downtime and data integrity.</li>
-      <li><strong>GenAI Chatbot:</strong> Developed a sentiment-aware chatbot integrated with Outlook, improving response insights and engagement tracking.</li>
-    </ul>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h3>BCG Chatbot (GenAI)</h3>
+        <p>Built NLP chatbot enabling user-friendly insights interpreting 10-K, 10-Q reports.</p>
+      </div>
+      <div class="project-card">
+        <h3>Video Game Sales Analysis</h3>
+        <p>Analyzed sales trends using SQL & Tableau; published dashboards to inform strategy.</p>
+      </div>
+      <div class="project-card">
+        <h3>Student Mental Health (GCP)</h3>
+        <p>Processed real-time survey and health data; visualized mental health support gaps.</p>
+      </div>
+      <div class="project-card">
+        <h3>Credit Card Fraud Prediction</h3>
+        <p>Developed models (Logistic Regression, Random Forest) and compared F1 scores.</p>
+      </div>
+      <div class="project-card">
+        <h3>Crypto Price Forecasting</h3>
+        <p>Forecasted short-term crypto prices using FB Prophet and SVM models.</p>
+      </div>
+    </div>
   </section>
 
   <section id="contact">
     <h2>Contact</h2>
     <div class="contact-icons">
-      <a href="mailto:dheerajpittala@gmail.com"><img src="https://cdn-icons-png.flaticon.com/512/281/281769.png" alt="Email"></a>
-      <a href="https://github.com/dheerajpittala" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub"></a>
-      <a href="https://www.linkedin.com/in/dheerajpittala" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn"></a>
+      <a href="mailto:dheerajkmp8055@gmail.com"><img src="https://img.icons8.com/color/48/gmail.png" alt="Gmail"></a>
+      <a href="https://www.linkedin.com/in/dheeraj-pittala/"><img src="https://img.icons8.com/color/48/linkedin.png" alt="LinkedIn"></a>
+      <a href="https://github.com/DheerajPittala8055"><img src="https://img.icons8.com/glyph-neue/64/github.png" alt="GitHub"></a>
     </div>
-
-    <h3 style="text-align:center; color: var(--accent-color); margin-top: 1rem;">Submit a Form</h3>
-
-    <form action="https://formspree.io/f/yourformid" method="POST">
+    <p style="text-align:center;">📞 +1 940 333 5445</p>
+    <h3 style="text-align:center; color: var(--accent-color); margin-top:2rem;">Submit a Form</h3>
+    <form action="mailto:dheerajkmp8055@gmail.com" method="post" enctype="text/plain">
       <div class="form-row">
-        <input type="text" name="firstName" placeholder="First Name" required />
-        <input type="text" name="lastName" placeholder="Last Name" required />
+        <input type="text" name="firstName" placeholder="First Name" required>
+        <input type="text" name="lastName" placeholder="Last Name" required>
       </div>
       <div class="form-row">
-        <input type="tel" name="mobile" placeholder="Mobile Number" required />
-        <input type="email" name="email" placeholder="Email Address" required />
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="mobile" placeholder="Mobile Number" required>
       </div>
       <textarea name="message" placeholder="Your Message" required></textarea>
       <button type="submit">Send Message</button>
@@ -246,13 +468,18 @@
   </section>
 
   <footer>
-    &copy; 2025 Dheeraj Kumar Madhav Pittala | All Rights Reserved
+    © 2025 Dheeraj Pittala | All Rights Reserved
   </footer>
+
+  <button onclick="scrollToTop()" id="topBtn">↑</button>
 
   <script>
     function toggleTheme() {
-      document.body.dataset.theme =
-        document.body.dataset.theme === "dark" ? "" : "dark";
+      document.body.classList.toggle("light");
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   </script>
 </body>
