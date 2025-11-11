@@ -33,11 +33,11 @@ section{max-width:1100px;margin:42px auto;padding:0 22px}
 
 /* Skills */
 .skills-grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));align-items:start}
-.skill-group{background:var(--card);border-radius:12px;padding:18px;min-height:150px;box-shadow:0 8px 20px rgba(2,6,23,0.35)}
-.skill-head{display:flex;gap:12px;align-items:center;margin-bottom:10px}
-.skill-head img{width:36px;height:36px;object-fit:contain}
+.skill-group{background:var(--card);border-radius:12px;padding:18px;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:start;text-align:center;box-shadow:0 8px 20px rgba(2,6,23,0.35)}
+.skill-head{display:flex;flex-direction:column;align-items:center;margin-bottom:12px}
+.skill-head img{width:40px;height:40px;margin-bottom:6px}
 .skill-head h4{margin:0;font-size:16px;color:var(--accent);font-weight:700}
-.skill-list{display:flex;flex-direction:column;gap:6px}
+.skill-list{display:flex;flex-direction:column;gap:6px;width:100%}
 .skill-item{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text)}
 .skill-bullet{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:0 0 8px}
 
@@ -61,12 +61,14 @@ section{max-width:1100px;margin:42px auto;padding:0 22px}
 
 /* Contact */
 .contact-row{display:flex;gap:18px;justify-content:center;align-items:center;margin-bottom:16px}
-.contact-icon{width:56px;height:56px;display:inline-flex;align-items:center;justify-content:center;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));font-size:22px;color:var(--accent);box-shadow:0 6px 18px rgba(0,0,0,0.2)}
-form{max-width:720px;margin:10px auto 40px;display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
-form h4{grid-column:1/-1;color:var(--accent);margin-bottom:6px}
-input,textarea{background:var(--card);border:1px solid rgba(255,255,255,0.03);padding:12px;border-radius:10px;color:var(--text);font-size:14px;min-height:44px}
-textarea{min-height:110px}
-.submit-btn{grid-column:1/-1;padding:12px;border-radius:10px;border:none;cursor:pointer;font-weight:700;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#041219}
+.contact-icon{width:56px;height:56px;display:inline-flex;align-items:center;justify-content:center;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));font-size:28px;color:var(--accent);box-shadow:0 6px 18px rgba(0,0,0,0.2)}
+form{max-width:720px;margin:10px auto 40px;display:grid;gap:12px}
+form h4{grid-column:1/-1;color:var(--accent);margin-bottom:12px;text-align:center;font-size:18px}
+form .row{display:flex;gap:12px}
+form .row input{flex:1}
+input,textarea{background:var(--card);border:1px solid rgba(255,255,255,0.03);padding:12px;border-radius:10px;color:var(--text);font-size:14px}
+textarea{min-height:110px;width:100%}
+.submit-btn{padding:12px;border-radius:10px;border:none;cursor:pointer;font-weight:700;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#041219;width:100%}
 
 /* Footer & Top */
 footer{padding:30px 22px;text-align:center;color:var(--muted);font-size:13px}
@@ -172,8 +174,18 @@ footer{padding:30px 22px;text-align:center;color:var(--muted);font-size:13px}
   </div>
   <div class="project-card">
     <h4>Student Mental Health (GCP)</h4>
-    <p>Processed real-time survey and healthcare data to extract predictive insights.</p>
+    <p>Processed real-time survey and healthcare data; visualized support gaps.</p>
     <div class="project-actions"><a href="https://github.com/DheerajPittala8055/Student-Mental-Health" target="_blank">View Project</a></div>
+  </div>
+  <div class="project-card">
+    <h4>Credit Card Fraud Prediction</h4>
+    <p>Built Logistic Regression & Random Forest models and compared F1 scores.</p>
+    <div class="project-actions"><a href="https://github.com/DheerajPittala8055/Credit-Card-Fraud-Prediction" target="_blank">View Project</a></div>
+  </div>
+  <div class="project-card">
+    <h4>Crypto Price Forecasting</h4>
+    <p>Modeled historical data using FB Prophet & SVM to deliver short-term forecasts.</p>
+    <div class="project-actions"><a href="https://github.com/DheerajPittala8055/Crypto-Price-Forecasting" target="_blank">View Project</a></div>
   </div>
 </div>
 </section>
@@ -182,17 +194,21 @@ footer{padding:30px 22px;text-align:center;color:var(--muted);font-size:13px}
 <section id="contact">
 <h3 class="section-title">Contact</h3>
 <div class="contact-row">
-  <div class="contact-icon"><i class="fas fa-phone"></i></div>
-  <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-  <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+  <a href="https://www.linkedin.com/in/dheeraj-pittala/" target="_blank" class="contact-icon"><i class="fab fa-linkedin"></i></a>
+  <a href="mailto:dheerajkmp8055@gmail.com" class="contact-icon"><i class="fas fa-envelope"></i></a>
+  <a href="https://github.com/DheerajPittala8055" target="_blank" class="contact-icon"><i class="fab fa-github"></i></a>
 </div>
 
 <h4>Submit a form</h4>
 <form id="contactForm">
-  <input type="text" name="firstName" placeholder="First Name" required>
-  <input type="text" name="lastName" placeholder="Last Name" required>
-  <input type="text" name="mobile" placeholder="Mobile Number" required>
-  <input type="email" name="email" placeholder="Email ID" required>
+  <div class="row">
+    <input type="text" name="firstName" placeholder="First Name" required>
+    <input type="text" name="lastName" placeholder="Last Name" required>
+  </div>
+  <div class="row">
+    <input type="text" name="mobile" placeholder="Mobile Number" required>
+    <input type="email" name="email" placeholder="Email ID" required>
+  </div>
   <textarea name="message" placeholder="Your Message" required></textarea>
   <button type="submit" class="submit-btn">Send Message</button>
 </form>
@@ -209,7 +225,7 @@ const themeToggle=document.getElementById('themeToggle');
 themeToggle.addEventListener('click',()=>{document.body.dataset-theme=document.body.dataset-theme==='dark'?'light':'dark'});
 const topBtn=document.getElementById('topBtn');
 window.onscroll=()=>{topBtn.style.display=(document.body.scrollTop>100||document.documentElement.scrollTop>100)?'block':'none'};
-document.getElementById('contactForm').addEventListener('submit',function(e){e.preventDefault();alert('Form submitted! (You can integrate your email API here)');});
+document.getElementById('contactForm').addEventListener('submit',function(e){e.preventDefault();alert('Form submitted! (Integrate email API to send messages)');});
 </script>
 </body>
 </html>
