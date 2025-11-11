@@ -9,9 +9,15 @@
 <style>
 :root{--bg:#0f1720;--card:#102533;--muted:#9aa7b2;--text:#e6eef3;--accent:#f4b41a;--accent-2:#ee7b3b;--glass:rgba(255,255,255,0.03);--radius:14px;--transition:300ms cubic-bezier(.2,.9,.2,1)}
 [data-theme="light"]{--bg:#faf7f3;--card:#fff;--muted:#5b6b74;--text:#122324;--accent:#f4982b;--accent-2:#e76f51;--glass:rgba(2,6,23,0.02)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);transition:background var(--transition),color var(--transition)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);transition:background var(--transition),color var(--transition)}
 header{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:14px 22px;background:linear-gradient(90deg,rgba(0,0,0,0.12),rgba(0,0,0,0.06));backdrop-filter:blur(6px);z-index:1200;border-bottom:1px solid rgba(255,255,255,0.03)}
-header .brand{display:flex;align-items:center;gap:12px}header .brand h1{margin:0;font-size:18px;font-weight:700}header nav{display:flex;gap:12px}header nav a{color:var(--text);text-decoration:none;font-weight:600;font-size:14px;padding:8px 10px;border-radius:8px;transition:all var(--transition)}header nav a:hover{background:var(--glass);transform:translateY(-2px)}
+header .brand{display:flex;align-items:center;gap:12px}
+header .brand h1{margin:0;font-size:18px;font-weight:700}
+header nav{display:flex;gap:12px}
+header nav a{color:var(--text);text-decoration:none;font-weight:600;font-size:14px;padding:8px 10px;border-radius:8px;transition:all var(--transition)}
+header nav a:hover{background:var(--glass);transform:translateY(-2px)}
 .controls .theme-btn{border:none;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#04121a;padding:8px 10px;border-radius:10px;cursor:pointer;font-weight:700;transition:transform var(--transition)}
 .controls .theme-btn:active{transform:scale(.98)}
 .hero{padding:92px 6% 56px;display:flex;flex-direction:column;align-items:center;text-align:center;background:linear-gradient(180deg,rgba(244,180,26,0.08),rgba(238,123,59,0.02))}
@@ -24,15 +30,17 @@ section{max-width:1100px;margin:42px auto;padding:0 22px}
 .muted{color:var(--muted);font-size:15px}
 .about-card{background:var(--card);border-radius:var(--radius);padding:26px;box-shadow:0 8px 30px rgba(2,6,23,0.45)}
 .about-card p{font-size:16px;line-height:1.7;margin:0}
+
 /* Skills */
 .skills-grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));align-items:start}
-.skill-group{background:var(--card);border-radius:12px;padding:18px;min-height:180px;box-shadow:0 8px 20px rgba(2,6,23,0.35);display:flex;flex-direction:column;justify-content:flex-start}
+.skill-group{background:var(--card);border-radius:12px;padding:18px;min-height:150px;box-shadow:0 8px 20px rgba(2,6,23,0.35)}
 .skill-head{display:flex;gap:12px;align-items:center;margin-bottom:10px}
 .skill-head img{width:36px;height:36px;object-fit:contain}
 .skill-head h4{margin:0;font-size:16px;color:var(--accent);font-weight:700}
 .skill-list{display:flex;flex-direction:column;gap:6px}
 .skill-item{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text)}
 .skill-bullet{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:0 0 8px}
+
 /* Timeline */
 .timeline-wrap{position:relative;padding:30px 0 10px}
 .timeline-line{position:absolute;left:50%;width:4px;top:0;bottom:0;background:linear-gradient(180deg,var(--accent),var(--accent-2));transform:translateX(-50%);border-radius:2px}
@@ -42,6 +50,7 @@ section{max-width:1100px;margin:42px auto;padding:0 22px}
 .timeline-meta{font-size:13px;color:var(--muted);margin-bottom:6px}
 .timeline-role{font-weight:700;color:var(--accent)}
 @media(max-width:880px){.timeline-line{left:20px;transform:none}.timeline-node{width:100%;left:48px;margin:28px 0 28px 40px;border-left:4px solid var(--accent);padding-left:20px;transform:none !important}.timeline-node.right{left:48px;transform:none;border-left:4px solid var(--accent);padding-left:20px}.timeline-node.left{left:48px;border-left:4px solid var(--accent);padding-left:20px}}
+
 /* Projects */
 .projects-grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
 .project-card{background:var(--card);border-radius:12px;padding:16px;min-height:140px;box-shadow:0 8px 22px rgba(2,6,23,0.35);transition:transform var(--transition)}
@@ -49,87 +58,158 @@ section{max-width:1100px;margin:42px auto;padding:0 22px}
 .project-card h4{margin:0 0 8px 0;color:var(--accent)}
 .project-card p{margin:0 0 12px 0;color:var(--muted)}
 .project-actions{display:flex;gap:10px;flex-wrap:wrap}
+
+/* Contact */
 .contact-row{display:flex;gap:18px;justify-content:center;align-items:center;margin-bottom:16px}
 .contact-icon{width:56px;height:56px;display:inline-flex;align-items:center;justify-content:center;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));font-size:22px;color:var(--accent);box-shadow:0 6px 18px rgba(0,0,0,0.2)}
-form{max-width:720px;margin:10px auto 40px;display:grid;gap:12px;grid-template-columns:1fr 1fr}
-form .full{grid-column:1/-1}
+form{max-width:720px;margin:10px auto 40px;display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
+form h4{grid-column:1/-1;color:var(--accent);margin-bottom:6px}
 input,textarea{background:var(--card);border:1px solid rgba(255,255,255,0.03);padding:12px;border-radius:10px;color:var(--text);font-size:14px;min-height:44px}
 textarea{min-height:110px}
 .submit-btn{grid-column:1/-1;padding:12px;border-radius:10px;border:none;cursor:pointer;font-weight:700;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#041219}
+
+/* Footer & Top */
 footer{padding:30px 22px;text-align:center;color:var(--muted);font-size:13px}
 #topBtn{position:fixed;bottom:26px;right:26px;background:var(--accent);color:#041219;border:none;padding:12px;border-radius:12px;cursor:pointer;display:none;z-index:999;box-shadow:0 8px 28px rgba(0,0,0,0.35)}
 </style>
 </head>
 <body data-theme="dark">
 <header>
-<div class="brand"><img src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" alt="logo" width="38"/><h1>Dheeraj Pittala</h1></div>
-<nav><a href="#about">About</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#contact">Contact</a></nav>
-<div class="controls"><button class="theme-btn" id="themeToggle">🌗</button></div>
+  <div class="brand"><img src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" alt="logo" width="38"/><h1>Dheeraj Pittala</h1></div>
+  <nav><a href="#about">About</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#contact">Contact</a></nav>
+  <div class="controls"><button class="theme-btn" id="themeToggle">🌗</button></div>
 </header>
 
 <section class="hero" id="home">
-<h2>Dheeraj Pittala</h2>
-<p>Data Analyst | Data Engineer | Data Scientist | AI / ML Engineer</p>
-<button class="cta" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Know more</button>
+  <h2>Dheeraj Pittala</h2>
+  <p>Data Analyst | Data Engineer | Data Scientist | AI / ML Engineer</p>
+  <button class="cta" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Know more</button>
 </section>
 
 <section id="about">
-<h3 class="section-title">About</h3>
-<div class="about-card">
-<p>I am a results-driven data professional with a Master’s in Data Science and 7+ years of hands-on experience across data analysis, engineering, and DevOps disciplines. I design and build scalable data pipelines, automate ETL/ELT workflows, and deliver executive-grade BI dashboards that directly drive operational and financial decisions. My work blends SQL/Python engineering, cloud platforms (Azure & GCP), and ML/Gen-AI techniques to solve business problems — from automating financial reconciliations and real-time reporting to prototyping GenAI chatbots and productionizing NLP pipelines for customer insights.</p>
-</div>
+  <h3 class="section-title">About</h3>
+  <div class="about-card">
+    <p>I am a results-driven data professional with a Master’s in Data Science and 7+ years of hands-on experience across data analysis, engineering, and DevOps disciplines. I design and build scalable data pipelines, automate ETL/ELT workflows, and deliver executive-grade BI dashboards that directly drive operational and financial decisions. My work blends SQL/Python engineering, cloud platforms (Azure & GCP), and ML/Gen-AI techniques to solve business problems — from automating financial reconciliations and real-time reporting to prototyping GenAI chatbots and productionizing NLP pipelines for customer insights.</p>
+  </div>
 </section>
 
 <section id="skills">
 <h3 class="section-title">Skills</h3>
 <div class="skills-grid">
-<div class="skill-group"><div class="skill-head"><img src="https://cdn-icons-png.flaticon.com/512/1822/1822899.png"><h4>Programming Languages</h4></div>
-<div class="skill-list"><div class="skill-item"><span class="skill-bullet"></span>SQL</div><div class="skill-item"><span class="skill-bullet"></span>Python</div><div class="skill-item"><span class="skill-bullet"></span>R</div></div></div>
-
-<div class="skill-group"><div class="skill-head"><img src="https://cdn-icons-png.flaticon.com/512/2985/2985150.png"><h4>Data Visualization</h4></div>
-<div class="skill-list"><div class="skill-item"><span class="skill-bullet"></span>Power BI</div><div class="skill-item"><span class="skill-bullet"></span>Tableau</div><div class="skill-item"><span class="skill-bullet"></span>Excel</div><div class="skill-item"><span class="skill-bullet"></span>Visio</div></div></div>
-
-<div class="skill-group"><div class="skill-head"><img src="https://cdn-icons-png.flaticon.com/512/1087/1087848.png"><h4>Databases & Platforms</h4></div>
-<div class="skill-list"><div class="skill-item"><span class="skill-bullet"></span>Azure</div><div class="skill-item"><span class="skill-bullet"></span>MS SQL Server</div><div class="skill-item"><span class="skill-bullet"></span>Hadoop, Hive, Spark</div><div class="skill-item"><span class="skill-bullet"></span>SAS VA, SSIS, SSRS</div></div></div>
-
-<div class="skill-group"><div class="skill-head"><img src="https://cdn-icons-png.flaticon.com/512/1086/1086933.png"><h4>Data Engineering</h4></div>
-<div class="skill-list"><div class="skill-item"><span class="skill-bullet"></span>GCP (BigQuery, DataProc)</div><div class="skill-item"><span class="skill-bullet"></span>ETL, ELT</div><div class="skill-item"><span class="skill-bullet"></span>Azure Data Factory</div><div class="skill-item"><span class="skill-bullet"></span>Databricks, Snowflake, PySpark</div></div></div>
-
-<div class="skill-group"><div class="skill-head"><img src="https://cdn-icons-png.flaticon.com/512/190/190411.png"><h4>ML & AI</h4></div>
-<div class="skill-list"><div class="skill-item"><span class="skill-bullet"></span>LLMs, NLP</div><div class="skill-item"><span class="skill-bullet"></span>Scikit-learn, TensorFlow, PyTorch</div><div class="skill-item"><span class="skill-bullet"></span>Azure AI, Gen AI (chatbots, sentiment)</div><div class="skill-item"><span class="skill-bullet"></span>APIs (REST)</div></div></div>
-
-<div class="skill-group"><div class="skill-head"><img src="https://cdn-icons-png.flaticon.com/512/1041/1041880.png"><h4>DevOps & Automation</h4></div>
-<div class="skill-list"><div class="skill-item"><span class="skill-bullet"></span>CI/CD (Jenkins)</div><div class="skill-item"><span class="skill-bullet"></span>Kubernetes, Docker</div><div class="skill-item"><span class="skill-bullet"></span>Git/GitHub</div><div class="skill-item"><span class="skill-bullet"></span>SCRUM, Agile (JIRA)</div></div></div>
+  <div class="skill-group">
+    <div class="skill-head"><img src="https://cdn-icons-png.flaticon.com/512/1822/1822899.png"><h4>Programming Languages</h4></div>
+    <div class="skill-list"><div class="skill-item"><span class="skill-bullet"></span>SQL</div><div class="skill-item"><span class="skill-bullet"></span>Python</div><div class="skill-item"><span class="skill-bullet"></span>R</div></div>
+  </div>
+  <div class="skill-group">
+    <div class="skill-head"><img src="https://cdn-icons-png.flaticon.com/512/2985/2985150.png"><h4>Data Visualization</h4></div>
+    <div class="skill-list"><div class="skill-item"><span class="skill-bullet"></span>Power BI</div><div class="skill-item"><span class="skill-bullet"></span>Tableau</div><div class="skill-item"><span class="skill-bullet"></span>Excel</div><div class="skill-item"><span class="skill-bullet"></span>Visio</div></div>
+  </div>
+  <div class="skill-group">
+    <div class="skill-head"><img src="https://cdn-icons-png.flaticon.com/512/270/270798.png"><h4>Databases & Platforms</h4></div>
+    <div class="skill-list"><div class="skill-item"><span class="skill-bullet"></span>Azure</div><div class="skill-item"><span class="skill-bullet"></span>MS SQL Server</div><div class="skill-item"><span class="skill-bullet"></span>Hadoop, Hive, Spark</div><div class="skill-item"><span class="skill-bullet"></span>SAS VA, SSIS, SSRS</div></div>
+  </div>
+  <div class="skill-group">
+    <div class="skill-head"><img src="https://cdn-icons-png.flaticon.com/512/190/190411.png"><h4>Data Engineering</h4></div>
+    <div class="skill-list"><div class="skill-item"><span class="skill-bullet"></span>GCP (BigQuery, DataProc)</div><div class="skill-item"><span class="skill-bullet"></span>ETL, ELT</div><div class="skill-item"><span class="skill-bullet"></span>Azure Data Factory</div><div class="skill-item"><span class="skill-bullet"></span>Databricks, Snowflake, PySpark</div></div>
+  </div>
+  <div class="skill-group">
+    <div class="skill-head"><img src="https://cdn-icons-png.flaticon.com/512/685/685352.png"><h4>ML & AI</h4></div>
+    <div class="skill-list"><div class="skill-item"><span class="skill-bullet"></span>LLMs, NLP</div><div class="skill-item"><span class="skill-bullet"></span>Scikit-learn, TensorFlow, PyTorch</div><div class="skill-item"><span class="skill-bullet"></span>Azure AI, Gen AI (chatbots, sentiment)</div><div class="skill-item"><span class="skill-bullet"></span>APIs (REST)</div></div>
+  </div>
+  <div class="skill-group">
+    <div class="skill-head"><img src="https://cdn-icons-png.flaticon.com/512/1041/1041880.png"><h4>DevOps & Automation</h4></div>
+    <div class="skill-list"><div class="skill-item"><span class="skill-bullet"></span>CI/CD (Jenkins)</div><div class="skill-item"><span class="skill-bullet"></span>Kubernetes, Docker</div><div class="skill-item"><span class="skill-bullet"></span>Git/GitHub</div><div class="skill-item"><span class="skill-bullet"></span>SCRUM, Agile (JIRA)</div></div>
+  </div>
 </div>
 </section>
 
+<!-- Professional Experience -->
+<section id="experience">
+<h3 class="section-title">Professional Experience</h3>
+<div class="timeline-wrap">
+  <div class="timeline-line"></div>
+  <div class="timeline-node left">
+    <div class="timeline-meta">May 2025 – Present</div>
+    <div class="timeline-role">Business Data Analyst | Ecolab, USA</div>
+    <p>Developed automated dashboards, ETL pipelines, and financial reports in Power BI/Tableau. Improved reporting efficiency by 30%, delivered executive insights, and prototyped GenAI solutions for analytics and customer insights.</p>
+  </div>
+  <div class="timeline-node right">
+    <div class="timeline-meta">Jul 2024 – Jun 2025</div>
+    <div class="timeline-role">Data Analyst | UNT Transportation & Parking Services</div>
+    <p>Built advanced dashboards and optimized ETL pipelines using SQL, Python, and Azure Data Factory. Led data quality initiatives, implemented sentiment analysis ML models, and prototyped a GenAI chatbot for the website.</p>
+  </div>
+  <div class="timeline-node left">
+    <div class="timeline-meta">Aug 2022 – May 2024</div>
+    <div class="timeline-role">Junior Data Analyst | UNT Transportation & Parking Services</div>
+    <p>Designed databases, optimized queries, conducted A/B testing, implemented predictive models for bus occupancy, and enhanced reporting efficiency using Power BI, SAS, and Excel.</p>
+  </div>
+  <div class="timeline-node right">
+    <div class="timeline-meta">Jan 2018 – Mar 2022</div>
+    <div class="timeline-role">DevOps Engineer | Accretion Info Systems, India</div>
+    <p>Automated CI/CD pipelines using Jenkins and Kubernetes, managed Azure storage, built schedulers for reporting, and led sprint planning using JIRA.</p>
+  </div>
+  <div class="timeline-node left">
+    <div class="timeline-meta">Aug 2017 – Dec 2017</div>
+    <div class="timeline-role">Associate Software Engineer | Accretion Info Systems, India</div>
+    <p>Developed optimized Java backend systems, improved database queries, implemented Agile, and generated performance reports using Excel.</p>
+  </div>
+</div>
+</section>
+
+<!-- Projects -->
+<section id="projects">
+<h3 class="section-title">Projects</h3>
+<div class="projects-grid">
+  <div class="project-card">
+    <h4>BCG Chatbot (GenAI)</h4>
+    <p>Built NLP chatbot enabling user-friendly insights interpreting 10-K, 10-Q reports.</p>
+    <div class="project-actions"><a href="https://github.com/DheerajPittala8055/BCG-Chatbot" target="_blank">View Project</a></div>
+  </div>
+  <div class="project-card">
+    <h4>Video Game Sales Analysis (SQL, Tableau)</h4>
+    <p>Analyzed sales trends and published dashboards to inform strategy.</p>
+    <div class="project-actions"><a href="https://github.com/DheerajPittala8055/Video-Game-Sales-Analysis" target="_blank">View Project</a></div>
+  </div>
+  <div class="project-card">
+    <h4>Student Mental Health (GCP)</h4>
+    <p>Processed real-time survey and healthcare data to extract predictive insights.</p>
+    <div class="project-actions"><a href="https://github.com/DheerajPittala8055/Student-Mental-Health" target="_blank">View Project</a></div>
+  </div>
+</div>
+</section>
+
+<!-- Contact -->
 <section id="contact">
 <h3 class="section-title">Contact</h3>
 <div class="contact-row">
-<a href="mailto:dheerajkmp8055@gmail.com" target="_blank" class="contact-icon"><i class="fas fa-envelope"></i></a>
-<a href="https://www.linkedin.com/in/dheeraj-pittala/" target="_blank" class="contact-icon"><i class="fab fa-linkedin"></i></a>
-<a href="https://github.com/DheerajPittala8055" target="_blank" class="contact-icon"><i class="fab fa-github"></i></a>
+  <div class="contact-icon"><i class="fas fa-phone"></i></div>
+  <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+  <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
 </div>
 
-<h3 style="text-align:center;margin-bottom:12px;">Submit a form</h3>
-<form action="mailto:dheerajkmp8055@gmail.com" method="POST" enctype="text/plain">
-<input type="text" name="firstname" placeholder="First Name" required>
-<input type="text" name="lastname" placeholder="Last Name" required>
-<input type="text" name="mobile" placeholder="Mobile Number" required>
-<input type="email" name="email" placeholder="Email" required>
-<input type="text" name="subject" placeholder="Subject" required class="full">
-<textarea name="description" placeholder="Description" required class="full"></textarea>
-<button type="submit" class="submit-btn full">Send Message</button>
+<h4>Submit a form</h4>
+<form id="contactForm">
+  <input type="text" name="firstName" placeholder="First Name" required>
+  <input type="text" name="lastName" placeholder="Last Name" required>
+  <input type="text" name="mobile" placeholder="Mobile Number" required>
+  <input type="email" name="email" placeholder="Email ID" required>
+  <textarea name="message" placeholder="Your Message" required></textarea>
+  <button type="submit" class="submit-btn">Send Message</button>
 </form>
 </section>
 
-<footer>&copy; 2025 Dheeraj Pittala. All rights reserved.</footer>
-<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆️</button>
+<footer>
+<p>© 2025 Dheeraj Pittala. All rights reserved.</p>
+</footer>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
 <script>
-const themeBtn=document.getElementById('themeToggle');
-themeBtn.addEventListener('click',()=>{document.documentElement.getAttribute('data-theme')==='light'?document.documentElement.setAttribute('data-theme','dark'):document.documentElement.setAttribute('data-theme','light')});
+const themeToggle=document.getElementById('themeToggle');
+themeToggle.addEventListener('click',()=>{document.body.dataset-theme=document.body.dataset-theme==='dark'?'light':'dark'});
 const topBtn=document.getElementById('topBtn');
-window.onscroll=function(){topBtn.style.display=(document.body.scrollTop>300||document.documentElement.scrollTop>300)?'block':'none'};
+window.onscroll=()=>{topBtn.style.display=(document.body.scrollTop>100||document.documentElement.scrollTop>100)?'block':'none'};
+document.getElementById('contactForm').addEventListener('submit',function(e){e.preventDefault();alert('Form submitted! (You can integrate your email API here)');});
 </script>
 </body>
 </html>
