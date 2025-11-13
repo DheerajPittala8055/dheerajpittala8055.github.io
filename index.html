@@ -144,66 +144,26 @@
     }
     .theme-btn:active { transform: rotate(180deg) scale(.95); }
     
-    /* Hero Section - Enhanced */
+    /* Hero Section with Visual */
     .hero {
-      padding: 120px 6% 80px;
+      padding: 92px 6% 56px;
       display: flex; 
       flex-direction: column; 
       align-items: center; 
       text-align: center;
-      background: var(--bg);
+      background: linear-gradient(180deg,rgba(244,180,26,0.08),rgba(238,123,59,0.02));
       position: relative;
       overflow: hidden;
-      min-height: 100vh;
-      justify-content: center;
     }
-    
-    /* Animated Gradient Background */
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at 30% 50%, rgba(244, 180, 26, 0.15), transparent 50%),
-                  radial-gradient(circle at 70% 50%, rgba(238, 123, 59, 0.15), transparent 50%);
-      animation: gradientShift 15s ease infinite;
-      z-index: 0;
-    }
-    
-    @keyframes gradientShift {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      33% { transform: translate(5%, 5%) rotate(120deg); }
-      66% { transform: translate(-5%, 5%) rotate(240deg); }
-    }
-    
-    /* Grid Pattern Overlay */
-    .hero::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: 
-        linear-gradient(rgba(244, 180, 26, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(244, 180, 26, 0.03) 1px, transparent 1px);
-      background-size: 50px 50px;
-      z-index: 1;
-      opacity: 0.5;
-    }
-    
     .hero-visual {
       position: relative;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
       width: 100%;
       max-width: 900px;
       height: 350px;
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 2;
     }
     .skill-orbit {
       position: absolute;
@@ -380,202 +340,29 @@
     .hero-center {
       position: relative;
       z-index: 10;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-    
-    /* Typing Animation for Title */
     .hero h2 { 
-      font-size: 56px; 
-      margin: 0 0 10px 0; 
+      font-size: 48px; 
+      margin: 0; 
       font-weight: 700;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent));
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: shimmer 3s linear infinite;
-      position: relative;
-      display: inline-block;
+      text-shadow: 0 2px 10px rgba(244, 180, 26, 0.3);
     }
-    
-    @keyframes shimmer {
-      0% { background-position: 0% center; }
-      100% { background-position: 200% center; }
-    }
-    
-    /* Glowing cursor effect */
-    .hero h2::after {
-      content: '';
-      position: absolute;
-      right: -10px;
-      top: 10%;
-      width: 4px;
-      height: 80%;
-      background: var(--accent);
-      animation: blink 1s step-end infinite;
-    }
-    
-    @keyframes blink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0; }
-    }
-    
-    .hero p { 
-      margin: 0 0 30px 0; 
-      font-weight: 600; 
-      color: var(--text);
-      font-size: 18px;
-      opacity: 0;
-      animation: fadeInUp 1s ease-out 0.5s forwards;
-      max-width: 700px;
-    }
-    
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    /* CTA Button Group */
-    .cta-group {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 30px;
-      opacity: 0;
-      animation: fadeInUp 1s ease-out 1s forwards;
-    }
-    
+    .hero p { margin: 8px 0 0 0; font-weight: 600; color: var(--text); }
     .hero .cta {
-      margin: 0;
-      padding: 16px 36px;
-      border-radius: 50px;
-      border: none;
+      margin-top: 18px; padding: 12px 22px;
+      border-radius: 999px; border: none;
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: white;
-      font-weight: 700;
-      font-size: 16px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 8px 25px rgba(244, 180, 26, 0.4);
-      position: relative;
-      overflow: hidden;
+      color: #041219; font-weight: 700; cursor: pointer;
+      transition: all var(--transition);
+      box-shadow: 0 4px 15px rgba(244, 180, 26, 0.3);
     }
-    
-    .hero .cta::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3);
-      transform: translate(-50%, -50%);
-      transition: width 0.6s, height 0.6s;
-    }
-    
-    .hero .cta:hover::before {
-      width: 300px;
-      height: 300px;
-    }
-    
     .hero .cta:hover { 
-      transform: translateY(-4px); 
-      box-shadow: 0 12px 35px rgba(244, 180, 26, 0.6);
-    }
-    
-    .hero .cta span {
-      position: relative;
-      z-index: 1;
-    }
-    
-    .hero .cta-secondary {
-      background: transparent;
-      border: 2px solid var(--accent);
-      color: var(--text);
-      box-shadow: none;
-    }
-    
-    .hero .cta-secondary:hover {
-      background: var(--accent);
-      color: white;
-      box-shadow: 0 8px 25px rgba(244, 180, 26, 0.4);
-    }
-    
-    /* Scroll indicator */
-    .scroll-indicator {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      opacity: 0;
-      animation: fadeInUp 1s ease-out 1.5s forwards;
-      z-index: 10;
-    }
-    
-    .scroll-indicator::after {
-      content: '';
-      width: 2px;
-      height: 40px;
-      background: linear-gradient(to bottom, var(--accent), transparent);
-      animation: scrollDown 2s ease-in-out infinite;
-    }
-    
-    @keyframes scrollDown {
-      0% { transform: translateY(-10px); opacity: 0; }
-      50% { opacity: 1; }
-      100% { transform: translateY(10px); opacity: 0; }
-    }
-    
-    /* Stats Counter Section */
-    .hero-stats {
-      display: flex;
-      gap: 50px;
-      justify-content: center;
-      margin-top: 50px;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeInUp 1s ease-out 1.2s forwards;
-      z-index: 10;
-      position: relative;
-    }
-    
-    .stat-item {
-      text-align: center;
-    }
-    
-    .stat-number {
-      font-size: 36px;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      display: block;
-      margin-bottom: 5px;
-    }
-    
-    .stat-label {
-      font-size: 13px;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-weight: 600;
+      transform: translateY(-3px); 
+      box-shadow: 0 8px 25px rgba(244, 180, 26, 0.5);
     }
     
     section { max-width: 1100px; margin: 42px auto; padding: 0 22px; }
@@ -994,9 +781,9 @@
       header nav {
         width: 100%;
       }
-      .hero h2 { font-size: 48px; }
-      .hero-stats { gap: 30px; }
-      .stat-number { font-size: 28px; }
+      .hero h2 { font-size: 32px; }
+      .hero-visual { height: 200px; }
+      .skill-icon { width: 60px; height: 60px; }
       .chat-message {
         max-width: 85%;
       }
@@ -1188,68 +975,6 @@
           <rect x="32" y="45" width="12" height="30" fill="var(--accent-2)">
             <animate attributeName="height" values="30;40;30" dur="2s" repeatCount="indefinite" begin="0.3s"/>
             <animate attributeName="y" values="45;35;45" dur="2s" repeatCount="indefinite" begin="0.3s"/>
-          </rect>
-          <rect x="49" y="40" width="12" height="35" fill="var(--accent)">
-            <animate attributeName="height" values="35;45;35" dur="2s" repeatCount="indefinite" begin="0.6s"/>
-            <animate attributeName="y" values="40;30;40" dur="2s" repeatCount="indefinite" begin="0.6s"/>
-          </rect>
-          <circle cx="70" cy="30" r="8" fill="none" stroke="var(--accent-2)" stroke-width="2">
-            <animate attributeName="r" values="8;10;8" dur="2s" repeatCount="indefinite"/>
-          </circle>
-        </svg>
-      </div>
-      
-      <!-- Algorithm/Code Animation -->
-      <div class="skill-icon" title="Algorithms & Optimization">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <text x="20" y="35" fill="var(--accent)" font-family="monospace" font-size="20" font-weight="bold">&lt;/&gt;</text>
-          <rect x="15" y="50" width="70" height="4" fill="var(--accent)" opacity="0.6">
-            <animate attributeName="width" values="70;50;70" dur="2s" repeatCount="indefinite"/>
-          </rect>
-          <rect x="15" y="60" width="55" height="4" fill="var(--accent-2)" opacity="0.6">
-            <animate attributeName="width" values="55;70;55" dur="2s" repeatCount="indefinite" begin="0.5s"/>
-          </rect>
-          <rect x="15" y="70" width="65" height="4" fill="var(--accent)" opacity="0.6">
-            <animate attributeName="width" values="65;45;65" dur="2s" repeatCount="indefinite" begin="1s"/>
-          </rect>
-        </svg>
-      </div>
-    </div>
-  </div>
-  
-  <div class="hero-center">
-    <h2>Dheeraj Pittala</h2>
-    <p>Data Analyst @ Ecolab | Data Engineer | Data Scientist | AI / ML Engineer</p>
-  </div>
-  
-  <div class="hero-stats">
-    <div class="stat-item">
-      <span class="stat-number">7+</span>
-      <span class="stat-label">Years Experience</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-number">50+</span>
-      <span class="stat-label">Projects Delivered</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-number">30%</span>
-      <span class="stat-label">Efficiency Boost</span>
-    </div>
-  </div>
-  
-  <div class="cta-group">
-    <button class="cta" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
-      <span>View My Work</span>
-    </button>
-    <button class="cta cta-secondary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-      <span>Get In Touch</span>
-    </button>
-  </div>
-  
-  <div class="scroll-indicator">
-    Scroll Down
-  </div>
-</section> values="45;35;45" dur="2s" repeatCount="indefinite" begin="0.3s"/>
           </rect>
           <rect x="49" y="40" width="12" height="35" fill="var(--accent)">
             <animate attributeName="height" values="35;45;35" dur="2s" repeatCount="indefinite" begin="0.6s"/>
@@ -1470,13 +1195,12 @@
     <a href="mailto:dheerajkmp8055@gmail.com" target="_blank" class="contact-icon"><i class="fa-solid fa-envelope"></i></a>
     <a href="https://www.linkedin.com/in/dheeraj-pittala/" target="_blank" class="contact-icon"><i class="fa-brands fa-linkedin-in"></i></a>
     <a href="https://github.com/DheerajPittala8055" target="_blank" class="contact-icon"><i class="fa-brands fa-github"></i></a>
-    <a href="https://www.instagram.com/daring.dheeraj/" target="_blank" class="contact-icon"><i class="fa-brands fa-instagram"></i></a>
   </div>
 
-  <h3 class="section-title">Submit a Form</h3>
+  <h3 style="text-align:center; margin-top:20px;">Submit a Form</h3>
   <form action="https://formsubmit.co/dheerajkmp8055@gmail.com" method="POST">
     <!-- FormSubmit Configuration -->
-    <input type="hidden" name="_next" value="https://dheerajpittala8055.github.io/thank-you.html">
+    <input type="hidden" name="_next" value="https://dheerajpittala8055.github.io/Portfolio-Website/thank-you.html">
     <input type="hidden" name="_subject" value="New Portfolio Contact Form Submission">
     <input type="hidden" name="_captcha" value="true">
     <input type="hidden" name="_template" value="table">
